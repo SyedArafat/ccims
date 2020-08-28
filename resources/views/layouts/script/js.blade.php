@@ -1,0 +1,15 @@
+{!! Html::script('assets/scripts/jquery-2.2.0.min.js') !!}
+{!! Html::script('assets/scripts/popper.min.js') !!}
+{!! Html::script('assets/scripts/bootstrap.min.js') !!}
+{!! Html::script('assets/scripts/mmenu.min.js') !!}
+{!! Html::script('assets/scripts/chosen.min.js') !!}
+{!! Html::script('assets/scripts/slick.min.js') !!}
+{!! Html::script('assets/scripts/rangeslider.min.js') !!}
+{!! Html::script('assets/scripts/magnific-popup.min.js') !!}
+{!! Html::script('assets/scripts/waypoints.min.js') !!}
+{!! Html::script('assets/scripts/counterup.min.js') !!}
+{!! Html::script('assets/scripts/jquery-ui.min.js') !!}
+{!! Html::script('assets/scripts/tooltips.min.js') !!}
+{!! Html::script('assets/scripts/jquery.countdown.min.js') !!}
+{!! Html::script('assets/scripts/bootstrap-datepicker.min.js') !!}
+{!! Html::script('assets/scripts/custom.js') !!}
