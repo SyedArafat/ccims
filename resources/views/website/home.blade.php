@@ -18,8 +18,8 @@
             </div>
             <div class="container shape-container d-flex align-items-center py-lg">
                 <div class="main-search-inner">
-                    <h2 class="text-white display-2">Find Nearby Attractions</h2>
-                    <h4 class="text-white">Expolore top-rated attractions, activities and more</h4>
+                    <h2 class="text-white display-2">Find and book suitable venue for your event</h2>
+                    <h4 class="text-white">Gaye Halud, Wedding Party, Corporate Meeting, Fair, Birthday Party & more ...</h4>
                     <div class="main-search-input">
                         <div class="main-search-input-item">
                             <input type="text" placeholder="What are you looking for?" value="" />
@@ -296,106 +296,7 @@
             </div>
         </div>
     </div>
-    <div class="block-space">
-        <div class="container">
-            <div class="row justify-content-center text-center mb-5">
-                <div class="col-lg-8">
-                    <h2 class="display-3">The Amazing Team</h2>
-                    <p class="lead">According to the National Oceanic and Atmospheric Administration, Ted, Scambos, NSIDClead scentist, puts the potentially record maximum.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
-                    <div class="px-4">
-                        <img src="assets/images/thumb-1.jpg" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 200px;" alt="list-logo">
-                        <div class="pt-4 text-center">
-                            <h5 class="title">
-                                <span class="d-block mb-1">Ryan Tompson</span>
-                                <small>Web Developer</small>
-                            </h5>
-                            <div class="mt-3">
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-twitter text-white"></i>
-                                </a>
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-facebook text-white"></i>
-                                </a>
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-dribbble text-white"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
-                    <div class="px-4">
-                        <img src="assets/images/thumb-2.jpg" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 200px;" alt="list-logo">
-                        <div class="pt-4 text-center">
-                            <h5 class="title">
-                                <span class="d-block mb-1">Romina Hadid</span>
-                                <small>Marketing Strategist</small>
-                            </h5>
-                            <div class="mt-3">
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-twitter text-white"></i>
-                                </a>
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-facebook text-white"></i>
-                                </a>
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-dribbble text-white"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
-                    <div class="px-4">
-                        <img src="assets/images/thumb-3.jpg" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 200px;" alt="list-logo">
-                        <div class="pt-4 text-center">
-                            <h5 class="title">
-                                <span class="d-block mb-1">Alexander Smit</span>
-                                <small>UI/UX Designer</small>
-                            </h5>
-                            <div class="mt-3">
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-twitter text-white"></i>
-                                </a>
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-facebook text-white"></i>
-                                </a>
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-dribbble text-white"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
-                    <div class="px-4">
-                        <img src="assets/images/thumb-4.jpg" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 200px;" alt="list-logo">
-                        <div class="pt-4 text-center">
-                            <h5 class="title">
-                                <span class="d-block mb-1">Ethan Moore</span>
-                                <small>Founder and CEO</small>
-                            </h5>
-                            <div class="mt-3">
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-twitter text-white"></i>
-                                </a>
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-facebook text-white"></i>
-                                </a>
-                                <a class="btn btn-primary btn-icon-only rounded-circle">
-                                    <i class="fa fa-dribbble text-white"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="block-space bg-secondary">
         <div class="block-head text-center mb-5">
             <h2 class="head-line display-3">
