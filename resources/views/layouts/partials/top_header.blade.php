@@ -82,7 +82,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">Pages</a>
+                                <a href="#">Register</a>
                                 <ul>
                                     <li><a href="pricing.html">Pricing</a></li>
                                     <li><a href="invoice.html">Invoice</a></li>
@@ -101,13 +101,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">Session</a>
-                                <ul>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="forgot-password.html">Forgot Password</a></li>
-                                    <li><a href="comingsoon.html">Coming Soon</a></li>
-                                </ul>
+                                <a href="{{route('login')}}">Login</a>
                             </li>
                         </ul>
                     </nav>
