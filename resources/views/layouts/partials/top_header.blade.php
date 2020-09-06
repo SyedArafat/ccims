@@ -82,23 +82,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">Register</a>
-                                <ul>
-                                    <li><a href="pricing.html">Pricing</a></li>
-                                    <li><a href="invoice.html">Invoice</a></li>
-                                    <li><a href="booking.html">Booking</a></li>
-                                    <li><a href="add-listing.html">Add Listing</a></li>
-                                    <li><a href="user-profile.html">Profile</a></li>
-                                    <li>
-                                        <a href="#">Blog</a>
-                                        <ul>
-                                            <li><a href="blog-list.html">List</a></li>
-                                            <li><a href="blog-detail.html">Detail</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
+                                <a href=" {{ route('register') }} ">Register</a>
                             </li>
                             <li>
                                 <a href="{{route('login')}}">Login</a>

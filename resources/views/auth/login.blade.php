@@ -100,7 +100,7 @@
                         <img src="{{asset("assets/images/logo-white.png")}}" width="170" class="mb-4 img-fluid" alt="image">
                         <h4 class="text-white">Discover great places in Dhaka</h4>
                         <p class="text-white">Find awesome places, restaurants and hotels for your precious events</p>
-                        <a href="JavaScript:Void(0)" class="btn btn-success">Search Now</a>
+                        <a href="{{ route('home') }}" class="btn btn-success">HOME</a>
                     </div>
                 </div>
             </div>
