@@ -1,5 +1,5 @@
 @extends('layouts.website')
-@section('title', 'asd')
+@section('title', 'CCIMS')
 @section('body_content')
     <div class="position-relative">
         <section class="section section-lg section-hero section-shaped">

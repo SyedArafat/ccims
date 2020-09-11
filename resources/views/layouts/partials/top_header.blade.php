@@ -85,7 +85,11 @@
                                 <a href=" {{ route('register') }} ">Register</a>
                             </li>
                             <li>
-                                <a href="{{route('login')}}">Login</a>
+                                @auth
+                                    <a href="{{route('login')}}">{{ auth()->user()->name }}</a>
+                                @else
+                                    <a href="{{route('login')}}">Login</a>
+                                @endauth
                             </li>
                         </ul>
                     </nav>
