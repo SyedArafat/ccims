@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', "HomeController@index")->name('home');
 
 Auth::routes();
+
+Route::middleware('auth')->group(function (){
+
+    /*
+    |--------------------------------------------------------------------------
+    | Customer Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware('user.type:customer')->group(function (){
+        Route::get('/kaka', 'HomeController@kaka');
+    });
+});
