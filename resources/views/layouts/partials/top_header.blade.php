@@ -77,12 +77,11 @@
                                     <li><a href="dashboard-profile.html">Profile</a></li>
                                 </ul>
                             </li>
-                            @auth
-                            @else
-                            <li>
-                                <a href=" {{ route('register') }} ">Register</a>
-                            </li>
-                            @endauth
+                            @if(!auth()->check())
+                                <li>
+                                    <a href=" {{ route('register') }} ">Register</a>
+                                </li>
+                            @endif
                             <li>
                                 @auth
                                     <a href="#">{{ getUserName() }}</a>
