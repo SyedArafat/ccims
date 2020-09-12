@@ -19,12 +19,25 @@ Auth::routes();
 
 Route::middleware('auth')->group(function (){
 
+    $customer   = getTypeCustomer();
+    $hall_owner = getTypeHallOwner();
+    /*
+    |--------------------------------------------------------------------------
+    | Customer & Hall Owner Common Routes
+    |--------------------------------------------------------------------------
+    */
+
+    Route::middleware("user.type:$customer|$hall_owner")->group(function (){
+        Route::get('/profile', 'ProfileController@index')->name('profile');
+    });
+
     /*
     |--------------------------------------------------------------------------
     | Customer Routes
     |--------------------------------------------------------------------------
     */
-    Route::middleware('user.type:customer')->group(function (){
+
+    Route::middleware("user.type:$customer")->group(function (){
         Route::get('/kaka', 'HomeController@kaka');
     });
 });

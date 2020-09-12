@@ -27,11 +27,7 @@
                     <nav id="navigation" class="style-1">
                         <ul id="responsive">
                             <li>
-                                <a class="current" href="#">Home</a>
-                                <ul>
-                                    <li><a href="index.html">Home Version 1</a></li>
-                                    <li><a href="index-2.html">Home Version 2</a></li>
-                                </ul>
+                                <a class="current" href="{{ route('home') }}">Home</a>
                             </li>
                             <li>
                                 <a href="#">Listings</a>
@@ -81,21 +77,41 @@
                                     <li><a href="dashboard-profile.html">Profile</a></li>
                                 </ul>
                             </li>
+                            @auth
+                            @else
                             <li>
                                 <a href=" {{ route('register') }} ">Register</a>
                             </li>
+                            @endauth
                             <li>
                                 @auth
-                                    <a href="{{route('login')}}">{{ auth()->user()->name }}</a>
+                                    <a href="#">{{ getUserName() }}</a>
+                                    <ul>
+                                        <li><a href="{{ route('profile') }}"> Profile </a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                               document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 @else
                                     <a href="{{route('login')}}">Login</a>
                                 @endauth
                             </li>
                         </ul>
                     </nav>
-                    <div class="header-widget">
-                        <a class="btn btn-neutral btn-icon btn-radius" href="add-listing.html">Add Listing <i class="fa fa-plus"></i></a>
-                    </div>
+                    @auth
+                        @if(getUserType() == getTypeHallOwner())
+                            <div class="header-widget">
+                                <a class="btn btn-neutral btn-icon btn-radius" href="add-listing.html">Add Venue <i class="fa fa-plus"></i></a>
+                            </div>
+                        @endif
+                    @endauth
                 </div>
             </div>
         </div>
