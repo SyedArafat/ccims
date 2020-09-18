@@ -28,7 +28,9 @@ Route::middleware('auth')->group(function (){
     */
 
     Route::middleware("user.type:$customer|$hall_owner")->group(function (){
-        Route::get('/profile', 'ProfileController@index')->name('profile');
+        Route::get('/user/profile', 'ProfileController@index')->name('profile');
+        Route::post('user/{user}/update-profile-photo', "ProfileController@updateProfilePhoto");
+        Route::post('user/{user}/update-profile-info', "ProfileController@updateProfileInfo");
     });
 
     /*

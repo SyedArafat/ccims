@@ -12,6 +12,9 @@
             overflow: auto;
             overflow-y: auto;
         }
+        .form-control-text {
+            color: black;
+        }
     </style>
     <div class="main-wrapper">
         <!--Title Bar -->
@@ -25,14 +28,14 @@
                                     <div class="card-profile-image">
                                         <a href="#">
                                             <img src="{{ asset("assets/images/default-avatar.png") }}" class="rounded-circle" alt="image">
-                                            <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal">Edit</button>
+                                            <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#updatePhoto">Edit</button>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-sm-12 offset-5 order-lg-3 text-lg-right">
                                     <div class="card-profile-actions py-4 mt-lg-0">
-                                        <a href="#" class="btn btn-sm btn-info mr-4">Edit Info</a>
-{{--                                        <a href="#" class="btn btn-sm btn-default float-right">Edit Info</a>--}}
+                                        <a href="#" data-toggle="modal" data-target="#updateInfo" class="btn btn-sm btn-info mr-4">Edit Info</a>
+                                        {{--                                        <a href="#" class="btn btn-sm btn-default float-right">Edit Info</a>--}}
                                     </div>
                                 </div>
                             </div>
@@ -44,8 +47,8 @@
                                 @if($user->profile->address)
                                     <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Bucharest, Romania</div>
                                 @endif
-{{--                                <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Oatman INC.</div>--}}
-{{--                                <div><i class="ni education_hat mr-2"></i>University of Computer Science</div>--}}
+                                {{--                                <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Oatman INC.</div>--}}
+                                {{--                                <div><i class="ni education_hat mr-2"></i>University of Computer Science</div>--}}
                             </div>
                             <div class="mt-5 py-5 border-top text-center">
                                 <div class="row justify-content-center">
@@ -65,7 +68,7 @@
                                     <a href="#" class="listing-item">
                                         <!-- Image -->
                                         <div class="listing-item-image">
-                                            <img src="assets/images/most-img-1.jpg" alt="image">
+                                            <img src=" {{ asset('assets/images/most-img-1.jpg') }}" alt="image">
                                         </div>
                                         <!-- Content -->
                                         <div class="listing-item-content">
@@ -85,7 +88,7 @@
                                     <a href="#" class="listing-item">
                                         <!-- Image -->
                                         <div class="listing-item-image">
-                                            <img src="assets/images/most-img-1.jpg" alt="image">
+                                            <img src="{{asset('assets/images/most-img-1.jpg')}}" alt="image">
                                         </div>
                                         <!-- Content -->
                                         <div class="listing-item-content">
@@ -105,7 +108,7 @@
                                     <a href="#" class="listing-item">
                                         <!-- Image -->
                                         <div class="listing-item-image">
-                                            <img src="assets/images/most-img-1.jpg" alt="image">
+                                            <img src="{{ asset('assets/images/most-img-1.jpg') }}" alt="image">
                                         </div>
                                         <!-- Content -->
                                         <div class="listing-item-content">
@@ -125,7 +128,7 @@
                                     <a href="#" class="listing-item">
                                         <!-- Image -->
                                         <div class="listing-item-image">
-                                            <img src="assets/images/most-img-1.jpg" alt="image">
+                                            <img src="{{ asset('assets/images/most-img-1.jpg') }}" alt="image">
                                         </div>
                                         <!-- Content -->
                                         <div class="listing-item-content">
@@ -150,7 +153,7 @@
                             </div>
                             <div class="row p-4 list-img-wrap">
                                 <div class="col-md-2 list-img">
-                                    <img src="assets/images/logo-1.png" class="img-fluid rounded-circle shadow-lg" alt="image">
+                                    <img src="{{ asset('assets/images/logo-1.png') }}" class="img-fluid rounded-circle shadow-lg" alt="image">
                                 </div>
                                 <div class="col-md-10">
                                     <h5 class="text-primary">Cafe Bar</h5>
@@ -163,7 +166,7 @@
                             </div>
                             <div class="row p-4 list-img-wrap">
                                 <div class="col-md-2 list-img">
-                                    <img src="assets/images/logo-2.png" class="img-fluid rounded-circle shadow-lg" alt="image">
+                                    <img src="{{ asset('assets/images/logo-2.png') }}" class="img-fluid rounded-circle shadow-lg" alt="image">
                                 </div>
                                 <div class="col-md-10">
                                     <h5 class="text-primary">Kyoto Sushi Bar</h5>
@@ -176,7 +179,7 @@
                             </div>
                             <div class="row p-4 list-img-wrap">
                                 <div class="col-md-2 list-img">
-                                    <img src="assets/images/logo-3.png" class="img-fluid rounded-circle shadow-lg" alt="image">
+                                    <img src="{{ asset('assets/images/logo-3.png') }}" class="img-fluid rounded-circle shadow-lg" alt="image">
                                 </div>
                                 <div class="col-md-10">
                                     <h5 class="text-primary">Burger Sack</h5>
@@ -194,23 +197,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
+    @include('website.profile.modal.update_photo')
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Header</h4>
-                    <button style="text-align: right" type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
+    @include('website.profile.modal.update_info')
 
-        </div>
-    </div>
 @endsection

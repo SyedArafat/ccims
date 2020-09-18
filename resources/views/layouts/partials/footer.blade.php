@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 col-sm-6">
-                <img class="footer-logo img-fluid" src="assets/images/logo-white.png" alt="list-logo">
+                <img class="footer-logo img-fluid" src="{{ asset('assets/images/logo-white.png') }}" alt="list-logo">
                 <br><br>
                 <p class="text-white">Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
                 <div class="text-widget text-white">

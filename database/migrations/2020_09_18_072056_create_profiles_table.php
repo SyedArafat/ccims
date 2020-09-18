@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('profile_image')->nullable();
+            $table->string('profile_photo')->nullable();
             $table->text('address')->nullable();
             $table->text('bio')->nullable();
             $table->timestamps();
