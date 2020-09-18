@@ -5121,7 +5121,7 @@ button.close {
   .bs-popover-top .arrow::before, .bs-popover-auto[x-placement^="top"] .arrow::before {
     bottom: 0;
     border-top-color: transparent; }
-  
+
   .bs-popover-top .arrow::after,
   .bs-popover-auto[x-placement^="top"] .arrow::after {
     bottom: 1px;
@@ -5141,7 +5141,7 @@ button.close {
   .bs-popover-right .arrow::before, .bs-popover-auto[x-placement^="right"] .arrow::before {
     left: 0;
     border-right-color: transparent; }
-  
+
   .bs-popover-right .arrow::after,
   .bs-popover-auto[x-placement^="right"] .arrow::after {
     left: 1px;
@@ -5158,7 +5158,7 @@ button.close {
   .bs-popover-bottom .arrow::before, .bs-popover-auto[x-placement^="bottom"] .arrow::before {
     top: 0;
     border-bottom-color: transparent; }
-  
+
   .bs-popover-bottom .arrow::after,
   .bs-popover-auto[x-placement^="bottom"] .arrow::after {
     top: 1px;
@@ -5187,7 +5187,7 @@ button.close {
   .bs-popover-left .arrow::before, .bs-popover-auto[x-placement^="left"] .arrow::before {
     right: 0;
     border-left-color: transparent; }
-  
+
   .bs-popover-left .arrow::after,
   .bs-popover-auto[x-placement^="left"] .arrow::after {
     right: 1px;
@@ -12616,7 +12616,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   cursor: pointer; }
 
 /* ---------------------------------- */
-/* Main Search Container 
+/* Main Search Container
 ------------------------------------- */
 .main-search-container {
   display: block;
@@ -18829,28 +18829,6 @@ span.like-icon {
 
 .like-icon.liked:before {
   opacity: 0; }
-
-#titlebar {
-  position: relative;
-  padding: 70px 0;
-  padding: 8rem 0;
-  background: url(../../assets/images/title-bar.jpg);
-  background-size: cover;
-  background-position: center center;
-  pointer-events: none;
-  color: #fff; }
-  #titlebar .container {
-    z-index: 99; }
-  #titlebar h2 {
-    color: #fff; }
-  #titlebar #breadcrumbs span {
-    font-size: 13px; }
-  #titlebar.photo-bg #breadcrumbs ul li {
-    color: #ffffff; }
-    #titlebar.photo-bg #breadcrumbs ul li a {
-      color: #ffffff; }
-    #titlebar.photo-bg #breadcrumbs ul li:before {
-      color: #ffffff; }
 
 .title-bar-inner {
   position: relative;

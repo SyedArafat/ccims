@@ -1,80 +1,57 @@
 @extends('layouts.website')
-@section('title', 'CCIMS')
+@section('title', $user->name)
 @section('body_content')
+    <style>
+        .modal {
+            position: absolute;
+            top: 80px;
+            right: 100px;
+            bottom: 0;
+            left: 0;
+            z-index: 10040;
+            overflow: auto;
+            overflow-y: auto;
+        }
+    </style>
     <div class="main-wrapper">
         <!--Title Bar -->
-        <div id="titlebar" class="gradient">
-            <div class="title-bar-inner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>My Profile</h2>
-                            <span>Explore the best places nearby</span>
-                            <!-- Breadcrumbs -->
-                            <nav id="breadcrumbs">
-                                <ul>
-                                    <li><a href="{{ route('home') }}">Home</a></li>
-                                    <li>Profile</li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="title-overlay"></div>
-        </div>
         <div id="content">
             <div class="container">
                 <div class="profile-page">
                     <div class="card card-profile shadow">
                         <div class="px-4">
                             <div class="row justify-content-center">
-                                <div class="col-lg-3 order-lg-2">
+                                <div class="col-lg-3 col-sm-12 order-lg-2">
                                     <div class="card-profile-image">
                                         <a href="#">
-                                            <img src="assets/images/thumb-3.jpg" class="rounded-circle" alt="image">
+                                            <img src="{{ asset("assets/images/default-avatar.png") }}" class="rounded-circle" alt="image">
+                                            <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal">Edit</button>
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+                                <div class="col-lg-4 col-sm-12 offset-5 order-lg-3 text-lg-right">
                                     <div class="card-profile-actions py-4 mt-lg-0">
-                                        <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
-                                        <a href="#" class="btn btn-sm btn-default float-right">Message</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 order-lg-1">
-                                    <div class="card-profile-stats d-flex justify-content-center">
-                                        <div>
-                                            <span class="heading">22</span>
-                                            <span class="description">Friends</span>
-                                        </div>
-                                        <div>
-                                            <span class="heading">10</span>
-                                            <span class="description">Photos</span>
-                                        </div>
-                                        <div>
-                                            <span class="heading">89</span>
-                                            <span class="description">Comments</span>
-                                        </div>
+                                        <a href="#" class="btn btn-sm btn-info mr-4">Edit Info</a>
+{{--                                        <a href="#" class="btn btn-sm btn-default float-right">Edit Info</a>--}}
                                     </div>
                                 </div>
                             </div>
                             <div class="text-center mt-5">
                                 <h3> {{ $user->name }}
-                                    <span class="font-weight-light">, 27</span>
                                 </h3>
                                 <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i> {{ $user->email }}</div>
                                 <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i> {{ $user->mobile }}</div>
-                                <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Bucharest, Romania</div>
-                                <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Oatman INC.</div>
-                                <div><i class="ni education_hat mr-2"></i>University of Computer Science</div>
+                                @if($user->profile->address)
+                                    <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Bucharest, Romania</div>
+                                @endif
+{{--                                <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Oatman INC.</div>--}}
+{{--                                <div><i class="ni education_hat mr-2"></i>University of Computer Science</div>--}}
                             </div>
                             <div class="mt-5 py-5 border-top text-center">
                                 <div class="row justify-content-center">
                                     <div class="col-lg-9">
                                         <p>An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable
                                             range.</p>
-                                        <a href="JavaScript:Void(0)">Show more</a>
                                     </div>
                                 </div>
                             </div>
@@ -214,6 +191,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Header</h4>
+                    <button style="text-align: right" type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection
