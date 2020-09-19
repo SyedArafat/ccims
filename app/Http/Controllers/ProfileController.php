@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CCIMS\Files\FileManager;
+use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -46,6 +47,27 @@ class ProfileController extends Controller
 
     public function updateProfileInfo(User $user, Request $request)
     {
+        $this->validate($request, $this->updatePhotoInfoRules());
+        $user->name   = $request->name;
+        $user->mobile = $request->mobile;
+        $user->save();
+        if($request->hasAny(['address', 'bio'])) $this->updateUserProfile($user->profile, $request);
+        Session::flash('success', "Information updated successfully");
+        return redirect()->route('user.profile');
+    }
 
+    private function updatePhotoInfoRules()
+    {
+        return [
+            'name' => 'required',
+            'mobile' => 'required'
+        ];
+    }
+
+    private function updateUserProfile(Profile $profile, Request $request)
+    {
+        $profile->bio = $request->bio;
+        $profile->address = $request->address;
+        $profile->save();
     }
 }

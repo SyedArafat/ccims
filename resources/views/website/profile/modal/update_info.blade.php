@@ -10,12 +10,12 @@
             <div class="modal-body">
                 {!! Form::open(['method' => 'post', 'action' => ['ProfileController@updateProfileInfo', $user->id], 'files' => true]) !!}
                 <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" class="form-control form-control-text" id="name" placeholder="Enter name" value=" {{ $user->name }} " name="name">
+                    <label for="name">Name: <span class="red">*</span> </label>
+                    <input type="text" required class="form-control form-control-text" id="name" placeholder="Enter name" value=" {{ $user->name }} " name="name">
                 </div>
                 <div class="form-group">
-                    <label for="mobile">Mobile:</label>
-                    <input type="text" class="form-control form-control-text" id="name" placeholder="Enter mobile" value=" {{ $user->mobile }} " name="mobile">
+                    <label for="mobile">Mobile: <span class="red">*</span> </label>
+                    <input type="text" required class="form-control form-control-text" id="name" placeholder="Enter mobile" value=" {{ $user->mobile }} " name="mobile">
                 </div>
                 <div class="form-group">
                     <label for="address">Address:</label>

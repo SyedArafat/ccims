@@ -46,7 +46,7 @@
                                 <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i> {{ $user->email }}</div>
                                 <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i> {{ $user->mobile }}</div>
                                 @if($user->profile->address)
-                                    <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Bucharest, Romania</div>
+                                    <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>{{ $user->profile->address }}</div>
                                 @endif
                             </div>
 
@@ -54,8 +54,7 @@
                                     <div class="row justify-content-center">
                                         <div class="col-lg-9">
                                             @if($user->profile->bio)
-                                                <p>An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable
-                                                    range.</p>
+                                                <p>{{ $user->profile->bio }}</p>
                                             @else
                                                 <p>Write a short Bio describing yourself. Your test, likes, dislikes.</p>
                                             @endif
