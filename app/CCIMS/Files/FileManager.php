@@ -20,9 +20,14 @@ trait FileManager
             $name=time().".".$file->getClientOriginalExtension();
             $directory = (config('constants.resource_storage')."/$folder_name");
             $file->move($directory, $name);
-            return $directory.$name;
+            return $directory."/".$name;
         }
 
         return false;
+    }
+
+    protected function deleteFile($file_path)
+    {
+        if (file_exists($file_path)) unlink($file_path);
     }
 }
