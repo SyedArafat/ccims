@@ -42,4 +42,14 @@ Route::middleware('auth')->group(function (){
     Route::middleware("user.type:$customer")->group(function (){
         Route::get('/kaka', 'HomeController@kaka');
     });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Hall Owner Routes
+    |--------------------------------------------------------------------------
+    */
+
+    Route::middleware("user.type:$hall_owner")->group(function (){
+        Route::get('/venue/create', 'VenueController@create')->name('venue.create');
+    });
 });

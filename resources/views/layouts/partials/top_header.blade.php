@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <div class="logo">
-                                <a><img class="img-fluid" src="assets/images/logo-white.png" width="164" height="25" alt=""></a>
+                                <a><img class="img-fluid" src="{{ asset('assets/images/logo-white.png') }}" width="164" height="25" alt=""></a>
                             </div>
                         </div>
                         <div class="col-6 collapse-close">
@@ -107,7 +107,7 @@
                     @auth
                         @if(getUserType() == getTypeHallOwner())
                             <div class="header-widget">
-                                <a class="btn btn-neutral btn-icon btn-radius" href="add-listing.html">Add Venue <i class="fa fa-plus"></i></a>
+                                <a class="btn btn-neutral btn-icon btn-radius" href="{{ route('venue.create') }}">Add Venue <i class="fa fa-plus"></i></a>
                             </div>
                         @endif
                     @endauth
