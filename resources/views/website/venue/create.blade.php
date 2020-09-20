@@ -13,18 +13,19 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div id="add-listing" class="separated-form">
+                    {!! Form::open(['method' => 'POST', 'action' => 'VenueController@store']) !!}
+                        <div id="add-listing" class="separated-form">
                         <!-- Section -->
                         <div class="add-listing-section mb-4">
                             <!-- Headline -->
                             <div class="add-listing-headline">
-                                <h3> Basic Informations</h3>
+                                <h3> Basic Information</h3>
                             </div>
                             <!-- Title -->
                             <div class="row with-forms">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Title" class="form-control form-control-alternative">
+                                        <input type="text" placeholder="Title*" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                             </div>
@@ -33,13 +34,10 @@
                                 <!-- Status -->
                                 <div class="col-md-6">
                                     <select class="custom-select form-control-alternative">
-                                        <option selected>Category</option>
-                                        <option>Eat & Drink</option>
-                                        <option>Shops</option>
-                                        <option>Hotels</option>
-                                        <option>Restaurants</option>
-                                        <option>Fitness</option>
-                                        <option>Events</option>
+                                        <option selected>Category*</option>
+                                        @foreach(config('venue.categories') as $category)
+                                            <option value="{{ $category }}">{{ $category }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <!-- Type -->
@@ -64,26 +62,24 @@
                                     <!-- City -->
                                     <div class="col-md-6">
                                         <select class="custom-select form-control-alternative">
-                                            <option selected>City</option>
-                                            <option>New York</option>
-                                            <option>Los Angeles</option>
-                                            <option>Chicago</option>
-                                            <option>Houston</option>
-                                            <option>Phoenix</option>
-                                            <option>San Diego</option>
-                                            <option>Austin</option>
+                                            <option selected>City*</option>
+                                            @foreach(config('constants.cities') as $key => $city)
+                                                <option>{{ $city }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="custom-select form-control-alternative">
+                                            <option selected>Area*</option>
+                                            @foreach(config('constants.areas') as $key => $area)
+                                                <option>{{ $area }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <!-- Address -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" placeholder="Address" class="form-control form-control-alternative">
-                                        </div>
-                                    </div>
-                                    <!-- City -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" placeholder="State" class="form-control form-control-alternative">
                                         </div>
                                     </div>
                                     <!-- Zip-Code -->
@@ -649,6 +645,7 @@
                         <!-- Section / End -->
                         <button class="btn btn-lg btn-primary mt-4" type="button">Add Listing</button>
                     </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

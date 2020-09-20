@@ -10,4 +10,9 @@ class VenueController extends Controller
     {
         return view('website.venue.create');
     }
+
+    public function store(Request $request)
+    {
+        return $request->all();
+    }
 }
