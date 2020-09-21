@@ -25,7 +25,12 @@
                             <div class="row with-forms">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Title*" class="form-control form-control-alternative">
+                                        <input type="text" id="name" placeholder="Title*" value="{{ old('name') }}" name="name" class="form-control form-control-alternative @error('name') is-invalid @enderror">
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -33,18 +38,28 @@
                             <div class="row with-forms">
                                 <!-- Status -->
                                 <div class="col-md-6">
-                                    <select class="custom-select form-control-alternative">
+                                    <select name="venue_category" class="custom-select form-control-alternative @error('venue_category') is-invalid @enderror">
                                         <option selected>Category*</option>
                                         @foreach(config('venue.categories') as $category)
-                                            <option value="{{ $category }}">{{ $category }}</option>
+                                            <option @if(old('venue_category') == $category) selected @endif value="{{ $category }}">{{ $category }}</option>
                                         @endforeach
                                     </select>
+                                    @error('venue_category')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <!-- Type -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Keywords" class="form-control form-control-alternative">
+                                        <input id="capacity" name="capacity" type="text" placeholder="capacity*" class="form-control form-control-alternative @error('capacity') is-invalid @enderror">
                                     </div>
+                                    @error('capacity')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <!-- Row / End -->
@@ -79,7 +94,7 @@
                                     <!-- Address -->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" placeholder="Address" class="form-control form-control-alternative">
+                                            <input type="text" placeholder="Address*" class="form-control form-control-alternative">
                                         </div>
                                     </div>
                                     <!-- Zip-Code -->
@@ -113,45 +128,34 @@
                             <!-- Row -->
                             <div class="row with-forms">
                                 <!-- Phone -->
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Phone" class="form-control form-control-alternative">
+                                        <input type="text" placeholder="Phone*" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                                 <!-- Website -->
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" placeholder="Website" class="form-control form-control-alternative">
-                                    </div>
-                                </div>
-                                <!-- Email Address -->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" placeholder="E-mail" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                             </div>
                             <!-- Row / End -->
                             <!-- Row -->
                             <div class="row with-forms">
+                                <!-- Email Address -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="E-mail" class="form-control form-control-alternative">
+                                    </div>
+                                </div>
                                 <!-- Phone -->
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" placeholder="Facebook" class="form-control form-control-alternative">
                                     </div>
                                 </div>
-                                <!-- Website -->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" placeholder="https://www.twitter.com/" class="form-control form-control-alternative">
-                                    </div>
-                                </div>
-                                <!-- Email Address -->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" placeholder="https://plus.google.com" class="form-control form-control-alternative">
-                                    </div>
-                                </div>
+
                             </div>
                             <!-- Row / End -->
                             <!-- Checkboxes -->
@@ -213,6 +217,67 @@
                         <div class="add-listing-section mb-4">
                             <!-- Headline -->
                             <div class="add-listing-headline">
+                                <h3> Open Days</h3>
+                                <!-- Switcher -->
+                                <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+                            </div>
+                            <!-- Switcher ON-OFF Content -->
+                            <div class="switcher-content">
+                                <!-- Day -->
+                                <div class="checkboxes checkbox-group in-row margin-bottom-20">
+                                    <div class="row opening-day">
+                                        <div class="custom-control custom-checkbox mb-3 pl-0">
+                                            <input class="custom-control-input" id="saturday" type="checkbox">
+                                            <label class="custom-control-label" for="saturday">
+                                                <span>Saturday</span>
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mb-3 pl-0">
+                                            <input class="custom-control-input" id="sunday" type="checkbox">
+                                            <label class="custom-control-label" for="sunday">
+                                                <span>Sunday</span>
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mb-3 pl-0">
+                                            <input class="custom-control-input" id="monday" type="checkbox">
+                                            <label class="custom-control-label" for="monday">
+                                                <span>Monday</span>
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mb-3 pl-0">
+                                            <input class="custom-control-input" id="tuesday" type="checkbox">
+                                            <label class="custom-control-label" for="tuesday">
+                                                <span>Tuesday</span>
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mb-3 pl-0">
+                                            <input class="custom-control-input" id="wednesday" type="checkbox">
+                                            <label class="custom-control-label" for="wednesday">
+                                                <span>Wednesday</span>
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mb-3 pl-0">
+                                            <input class="custom-control-input" id="thursday" type="checkbox">
+                                            <label class="custom-control-label" for="thursday">
+                                                <span>Thursday</span>
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mb-3 pl-0">
+                                            <input class="custom-control-input" id="friday" type="checkbox">
+                                            <label class="custom-control-label" for="friday">
+                                                <span>Friday</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Switcher ON-OFF Content / End -->
+                        </div>
+                        <!-- Section / End -->
+                        <!-- Section -->
+                        <div class="add-listing-section mb-4">
+                            <!-- Headline -->
+                            <div class="add-listing-headline">
                                 <h3> Opening Hours</h3>
                                 <!-- Switcher -->
                                 <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
@@ -222,380 +287,20 @@
                                 <!-- Day -->
                                 <div class="row opening-day">
                                     <div class="col-md-2">
-                                        <h5>Monday</h5>
+                                        <h5>Start Time</h5>
                                     </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Closed</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
+                                    <div class="col-md-4">
+                                        <div class="md-form md-outline">
+                                            <input type="time" class="form-control" placeholder="Select time">
+                                        </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Closed</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row opening-day">
                                     <div class="col-md-2">
-                                        <h5>Tuesday</h5>
+                                        <h5>End Time</h5>
                                     </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Closed</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Wednesday</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row opening-day">
-                                    <div class="col-md-2">
-                                        <h5>Thursday</h5>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Closed</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Closed</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row opening-day">
-                                    <div class="col-md-2">
-                                        <h5>Friday</h5>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Closed</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Closed</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row opening-day">
-                                    <div class="col-md-2">
-                                        <h5>Sturday</h5>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Closed</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Closed</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row opening-day">
-                                    <div class="col-md-2">
-                                        <h5>Sunday</h5>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Closed</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select class="custom-select form-control-alternative">
-                                            <option selected>Closed</option>
-                                            <option>1 AM</option>
-                                            <option>2 AM</option>
-                                            <option>3 AM</option>
-                                            <option>4 AM</option>
-                                            <option>5 AM</option>
-                                            <option>6 AM</option>
-                                            <option>7 AM</option>
-                                            <option>8 AM</option>
-                                            <option>9 AM</option>
-                                            <option>10 AM</option>
-                                            <option>11 AM</option>
-                                            <option>12 AM</option>
-                                            <option>1 PM</option>
-                                            <option>2 PM</option>
-                                            <option>3 PM</option>
-                                            <option>4 PM</option>
-                                            <option>5 PM</option>
-                                            <option>6 PM</option>
-                                            <option>7 PM</option>
-                                            <option>8 PM</option>
-                                            <option>9 PM</option>
-                                            <option>10 PM</option>
-                                            <option>11 PM</option>
-                                            <option>12 PM</option>
-                                        </select>
+                                    <div class="col-md-4">
+                                        <div class="md-form md-outline">
+                                            <input type="time" class="form-control" placeholder="Select time">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -615,35 +320,30 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <table id="pricing-list-container">
-                                            <tr class="pricing-list-item pattern">
-                                                <td>
-                                                    <div class="fm-input pricing-name">
-                                                        <div class="form-group">
-                                                            <input type="text" placeholder="Title" class="form-control form-control-alternative">
+                                            @foreach(config('venue.price_categories') as $category)
+                                                <tr class="pricing-list-item pattern">
+                                                    <td>
+                                                        <div class="fm-input pricing-name">
+                                                            <select class="custom-select form-control-alternative">
+                                                                <option value="{{ $category }}">{{ $category }}</option>
+                                                            </select>
                                                         </div>
-                                                    </div>
-                                                    <div class="fm-input pricing-ingredients">
-                                                        <div class="form-group">
-                                                            <input type="text" placeholder="Price" class="form-control form-control-alternative">
+                                                        <div class="fm-input pricing-ingredients">
+                                                            <div class="form-group">
+                                                                <input type="text" placeholder="Price" class="form-control form-control-alternative">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="fm-input pricing-price">
-                                                        <div class="form-group">
-                                                            <input type="text" placeholder="Price" class="form-control form-control-alternative">
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </table>
-                                        <button class="btn btn-1 btn-primary" type="button">Add Item</button>
-                                        <button class="btn btn-1 btn-primary" type="button">Add Category</button>
                                     </div>
                                 </div>
                             </div>
                             <!-- Switcher ON-OFF Content / End -->
                         </div>
                         <!-- Section / End -->
-                        <button class="btn btn-lg btn-primary mt-4" type="button">Add Listing</button>
+                        <button class="btn btn-lg btn-primary mt-4" type="submit">Add Venue</button>
                     </div>
                     {!! Form::close() !!}
                 </div>
