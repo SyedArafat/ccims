@@ -9,9 +9,9 @@ return [
     ],
 
     "price_categories" => [
-        "Day",
-        "Night",
-        "Full Day"
+        "day",
+        "night",
+        "full_day"
     ]
 
 ];
