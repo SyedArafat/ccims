@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Area;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
@@ -20,12 +21,17 @@ class VenueController extends Controller
 
     /**
      * @param Request $request
-     * @return array
+     * @return array|\Illuminate\Http\RedirectResponse
      * @throws ValidationException
      */
     public function store(Request $request)
     {
         $this->validate($request, $this->validationRules());
+        if(($request->start_time == null && $request->end_time !=null) || $request->start_time !=null && $request->end_time == null)
+        {
+            Session::flash("error", "Invalid start time or end time. Please try again");
+            return redirect()->back()->withInput();
+        }
         return $request->all();
     }
 
@@ -37,10 +43,10 @@ class VenueController extends Controller
             $cat = $cat."$category".",";
         }
         return [
-            "name"           => "required",
+            "name"           => "required|max:255",
             "venue_category" => "required|in:$cat",
             "capacity"       => "required|numeric",
-            "city"           => "required",
+            "city"           => "required|max:255",
             "prices"         => "required",
             "prices.*"       => "numeric",
             "zip_code"       => "sometimes|max:5",
@@ -48,6 +54,9 @@ class VenueController extends Controller
             "start_time"     => "sometimes|nullable|date_format:H:i",
             "area_id"        => "required",
             "end_time"       => "sometimes|nullable|date_format:H:i",
+            "email"          => "sometimes|email",
+            "address"        => "required",
+            "website"        => "sometimes|max:255"
         ];
     }
 }
