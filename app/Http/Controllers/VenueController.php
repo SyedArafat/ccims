@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Area;
+use App\CCIMS\Venue\VenueRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
@@ -10,12 +10,19 @@ use Illuminate\View\View;
 
 class VenueController extends Controller
 {
+    private $venueRepository;
+
+    public function __construct(VenueRepository $venue)
+    {
+        $this->venueRepository = $venue;
+    }
+
     /**
      * @return View
      */
     public function create()
     {
-        $areas = Area::all(['id', 'area_name']);
+        $areas = $this->venueRepository->all_areas();
         return view('website.venue.create', compact('areas'));
     }
 
@@ -32,7 +39,9 @@ class VenueController extends Controller
             Session::flash("error", "Invalid start time or end time. Please try again");
             return redirect()->back()->withInput();
         }
-        return $request->all();
+        $this->venueRepository->store($request);
+        Session::flash("success", "Venue stored");
+        return redirect()->back();
     }
 
     private function validationRules()
