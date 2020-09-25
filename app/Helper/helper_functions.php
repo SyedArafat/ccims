@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Schema\Blueprint;
 use \Illuminate\Support\Facades\Auth;
 
 if( !function_exists("checkPermission"))
@@ -61,6 +62,22 @@ if ( !function_exists('getTypeHallOwner') )
     function getTypeHallOwner()
     {
         return config('constants.user_types')[1];
+    }
+}
+
+if ( !function_exists('commonDbFields') )
+{
+    /**
+     * @param Blueprint $table
+     * @param int $precision
+     * @return mixed
+     */
+    function commonDbFields($table, $precision = 0)
+    {
+        $table->integer('created_by_id')->nullable();
+        $table->integer('updated_by_id')->nullable();
+        $table->timestamp('created_at', $precision)->nullable();
+        $table->timestamp('updated_at', $precision)->nullable();
     }
 }
 

@@ -30,9 +30,9 @@ class VenueController extends Controller
     private function validationRules()
     {
         return [
-            "name" => "required",
+            "name"           => "required",
             "venue_category" => "required",
-            "capacity" => "required"
+            "capacity"       => "required|numeric"
         ];
     }
 }
