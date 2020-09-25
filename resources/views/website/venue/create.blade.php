@@ -13,6 +13,16 @@
 {{--                            <span aria-hidden="true">×</span>--}}
 {{--                        </button>--}}
 {{--                    </div>--}}
+                    @if ($errors->any())
+                        <div id="alert_message" class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
 
                     {!! Form::open(['method' => 'POST', 'action' => 'VenueController@store']) !!}
                         <div id="add-listing" class="separated-form">
@@ -50,7 +60,7 @@
                                 <!-- Type -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input name="capacity" required value="{{ old('capacity') }}" type="text" placeholder="capacity*" class="form-control form-control-alternative @error('capacity') is-invalid @enderror">
+                                        <input name="capacity" required value="{{ old('capacity') }}" type="number" placeholder="capacity*" class="form-control form-control-alternative @error('capacity') is-invalid @enderror">
                                     </div>
                                     @if($errors->has('capacity'))
                                         <p class="text-danger">{{ $errors->first('capacity') }}</p>
@@ -82,14 +92,14 @@
                                         @endif
                                     </div>
                                     <div class="col-md-6">
-                                        <select name="area_code" required class="custom-select form-control-alternative">
+                                        <select name="area_id" required class="custom-select form-control-alternative">
                                             <option value="" selected>Area*</option>
-                                            @foreach(config('constants.areas') as $key => $area)
-                                                <option @if(old('area_code') == $key) selected @endif value="{{ $key }}">{{ $area }}</option>
+                                            @foreach($areas as $area)
+                                                <option @if(old('area_id') == $area->id) selected @endif value="{{ $area->id }}">{{ $area->area_name }}</option>
                                             @endforeach
                                         </select>
-                                        @if($errors->has('area_code'))
-                                            <p class="text-danger">{{ $errors->first('area_code') }}</p>
+                                        @if($errors->has('area_id'))
+                                            <p class="text-danger">{{ $errors->first('area_id') }}</p>
                                         @endif
                                     </div>
                                     <!-- Address -->
@@ -104,7 +114,7 @@
                                     <!-- Zip-Code -->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" value="{{ old('zip_code') }}" name="zip_code" placeholder="Zip Code" class="form-control form-control-alternative">
+                                            <input type="text" value="{{ old('zip_code') }}" maxlength="5" name="zip_code" placeholder="Zip Code" class="form-control form-control-alternative">
                                         </div>
                                         @if($errors->has('zip_code'))
                                             <p class="text-danger">{{ $errors->first('zip_code') }}</p>
@@ -140,7 +150,7 @@
                                 <!-- Phone -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="phone" required value="{{ old('phone') }}" placeholder="Phone*" class="form-control form-control-alternative">
+                                        <input type="text" name="phone" required value="{{ old('phone') }}" maxlength="18" placeholder="Phone*" class="form-control form-control-alternative">
                                     </div>
                                     @if($errors->has('phone'))
                                         <p class="text-danger">{{ $errors->first('phone') }}</p>
@@ -334,7 +344,7 @@
                                                         </div>
                                                         <div class="fm-input pricing-ingredients">
                                                             <div class="form-group">
-                                                                <input required name="prices[{{$category}}]" type="text" placeholder="Price" class="form-control form-control-alternative">
+                                                                <input required name="prices[{{$category}}]" type="number" placeholder="Price*" class="form-control form-control-alternative">
                                                             </div>
                                                         </div>
                                                     </td>
@@ -342,6 +352,9 @@
                                             @endforeach
                                         </table>
                                     </div>
+                                    @if($errors->has('prices'))
+                                        <p class="text-danger">{{ $errors->first('prices') }}</p>
+                                    @endif
                                 </div>
                             </div>
                             <!-- Switcher ON-OFF Content / End -->

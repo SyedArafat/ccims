@@ -10,11 +10,6 @@ return [
     'cities' => [
         0 => "Dhaka",
         1 => "Chattogram"
-    ],
-
-    'areas' => [
-        0001 => "Khilkhet",
-        0002 => "Rampura"
     ]
 
 ];
