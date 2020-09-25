@@ -39,11 +39,16 @@ class VenueController extends Controller
             Session::flash("error", "Invalid start time or end time. Please try again");
             return redirect()->back()->withInput();
         }
+
         $this->venueRepository->store($request);
+        $this->venueRepository->storePrices($request->prices);
         Session::flash("success", "Venue stored");
         return redirect()->back();
     }
 
+    /**
+     * @return array
+     */
     private function validationRules()
     {
         $categories = config('venue.categories');

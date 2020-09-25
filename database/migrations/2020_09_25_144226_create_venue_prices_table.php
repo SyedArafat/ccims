@@ -15,6 +15,9 @@ class CreateVenuePricesTable extends Migration
     {
         Schema::create('venue_prices', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('venue_id')->unsigned();
+            $table->foreign('venue_id')->references('id')->on('venues')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->string('category_type');
             $table->double('price',8,2);
             $table->enum('status', ["active", "inactive"])->default("active");
