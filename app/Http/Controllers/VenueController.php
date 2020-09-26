@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\CCIMS\Files\FileManager;
 use App\CCIMS\Venue\VenueRepository;
+use App\Venue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
@@ -34,7 +34,7 @@ class VenueController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->validationRules());
+        $this->validate($request, $this->venueRepository->validationRules());
         if(($request->start_time == null && $request->end_time !=null) || $request->start_time !=null && $request->end_time == null)
         {
             Session::flash("error", "Invalid start time or end time. Please try again");
@@ -42,37 +42,13 @@ class VenueController extends Controller
         }
 
         $this->venueRepository->store($request);
-        $this->venueRepository->storePrices($request->prices);
         Session::flash("success", "Venue stored");
         return redirect()->back();
     }
 
-    /**
-     * @return array
-     */
-    private function validationRules()
+    public function edit(Venue $venue)
     {
-        $categories = config('venue.categories');
-        $cat = '';
-        foreach ($categories as $category){
-            $cat = $cat."$category".",";
-        }
-        return [
-            "name"           => "required|max:255",
-            "venue_category" => "required|in:$cat",
-            "capacity"       => "required|numeric|max:11",
-            "city"           => "required|max:255",
-            "prices"         => "required",
-            "prices.*"       => "numeric",
-            "zip_code"       => "sometimes|max:5",
-            "phone"          => "required|max:18",
-            "start_time"     => "sometimes|nullable|date_format:H:i",
-            "area_id"        => "required",
-            "end_time"       => "sometimes|nullable|date_format:H:i",
-            "email"          => "sometimes|email",
-            "address"        => "required",
-            "venue_image"    => "required|file|max:5000",
-            "website"        => "sometimes|max:255"
-        ];
+        $areas = $this->venueRepository->all_areas();
+        return view('website.venue.edit', compact('venue', 'areas'));
     }
 }

@@ -15,6 +15,7 @@ class AddVenueImageColumnToVenuesTable extends Migration
     {
         Schema::table('venues', function (Blueprint $table) {
             $table->string('venue_image')->after('website');
+            $table->string('phone',18)->after('email');
         });
     }
 
@@ -27,6 +28,7 @@ class AddVenueImageColumnToVenuesTable extends Migration
     {
         Schema::table('venues', function (Blueprint $table) {
             $table->dropColumn('venue_image');
+            $table->dropColumn('phone');
         });
     }
 }

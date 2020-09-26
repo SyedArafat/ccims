@@ -64,92 +64,31 @@
 
                         </div>
                         <div class="px-4">
-                            <h3>Lisa's Listings</h3>
+                            <h3>{{getUserName()}}'s Stored Venues</h3>
                         </div>
                         <div class="row p-4">
-                            <div class="col-md-6 mb-4">
-                                <div class="listing-item-container list-layout">
-                                    <a href="#" class="listing-item">
-                                        <!-- Image -->
-                                        <div class="listing-item-image">
-                                            <img src=" {{ asset('assets/images/most-img-1.jpg') }}" alt="image">
-                                        </div>
-                                        <!-- Content -->
-                                        <div class="listing-item-content">
-                                            <span class="badge badge-pill list-banner badge-success text-uppercase">Open</span>
-                                            <div class="listing-item-inner">
-                                                <h3>Vendy Nors</h3>
-                                                <span> <small> Noi Nwar, Givok Berlin </small> </span>
-                                                <div class="mt-3"><span class="badge badge-pill badge-primary text-uppercase">Food</span></div>
+                            @foreach($user->venues as $venue)
+                                <div class="col-md-6 mb-4">
+                                    <div class="listing-item-container list-layout">
+                                        <a href="{{ route('venue.edit', $venue->id) }}" class="listing-item">
+                                            <!-- Image -->
+                                            <div class="listing-item-image">
+                                                <img src="{{ asset($venue->venue_image) }}" alt="image">
                                             </div>
-                                            <span class="round-pill like-banner d-block bg-primary"><i class="fa fa-heart-o"></i></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <div class="listing-item-container list-layout">
-                                    <a href="#" class="listing-item">
-                                        <!-- Image -->
-                                        <div class="listing-item-image">
-                                            <img src="{{asset('assets/images/most-img-1.jpg')}}" alt="image">
-                                        </div>
-                                        <!-- Content -->
-                                        <div class="listing-item-content">
-                                            <span class="badge badge-pill list-banner badge-success text-uppercase">Open</span>
-                                            <div class="listing-item-inner">
-                                                <h3>Vendy Nors</h3>
-                                                <span> <small>Noi Nwar, Givok Berlin</small> </span>
-                                                <div class="mt-3"><span class="badge badge-pill badge-primary text-uppercase">Food</span></div>
+                                            <!-- Content -->
+                                            <div class="listing-item-content">
+                                                <span class="badge badge-pill list-banner badge-success text-uppercase">Open</span>
+                                                <div class="listing-item-inner">
+                                                    <h3>{{ $venue->name }}</h3>
+                                                    <span> <small>{{ $venue->venue_category }}</small> </span>
+                                                    <div class="mt-3"><span class="badge badge-pill badge-primary text-uppercase">Food</span></div>
+                                                </div>
+                                                <span title="Edit Details" class="round-pill like-banner d-block bg-primary"><i class="fa fa-edit"></i></span>
                                             </div>
-                                            <span class="round-pill like-banner d-block bg-primary"><i class="fa fa-heart-o"></i></span>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <div class="listing-item-container list-layout">
-                                    <a href="#" class="listing-item">
-                                        <!-- Image -->
-                                        <div class="listing-item-image">
-                                            <img src="{{ asset('assets/images/most-img-1.jpg') }}" alt="image">
-                                        </div>
-                                        <!-- Content -->
-                                        <div class="listing-item-content">
-                                            <span class="badge badge-pill list-banner badge-success text-uppercase">Open</span>
-                                            <div class="listing-item-inner">
-                                                <h3>Vendy Nors</h3>
-                                                <span> <small> Noi Nwar, Givok Berlin</small></span>
-                                                <div class="mt-3"><span class="badge badge-pill badge-primary text-uppercase">Food</span></div>
-                                            </div>
-                                            <span class="round-pill like-banner d-block bg-primary"><i class="fa fa-heart-o"></i></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <div class="listing-item-container list-layout">
-                                    <a href="#" class="listing-item">
-                                        <!-- Image -->
-                                        <div class="listing-item-image">
-                                            <img src="{{ asset('assets/images/most-img-1.jpg') }}" alt="image">
-                                        </div>
-                                        <!-- Content -->
-                                        <div class="listing-item-content">
-                                            <span class="badge badge-pill list-banner badge-success text-uppercase">Open</span>
-                                            <div class="listing-item-inner">
-                                                <h3>Vendy Nors</h3>
-                                                <span> <small> Noi Nwar, Givok Berlin</small></span>
-                                                <div class="mt-3"><span class="badge badge-pill badge-primary text-uppercase">Food</span></div>
-                                            </div>
-                                            <span class="round-pill like-banner d-block bg-primary"><i class="fa fa-heart-o"></i></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-12 text-center my-4">
-                                <a href="#">Show more</a>
-                            </div>
+                            @endforeach
                         </div>
                         <div class="pb-5">
                             <div class="px-4">

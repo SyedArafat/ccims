@@ -43,6 +43,7 @@ class VenueRepository
         $this->model->address        = $request->address;
         $this->model->description    = $request->description;
         $this->model->website        = $request->website;
+        $this->model->phone          = $request->phone;
         $this->model->facebook       = $request->facebook;
         $this->model->facilities     = json_encode($request->facilities);
         $this->model->open_days      = json_encode($request->open_days);
@@ -50,6 +51,7 @@ class VenueRepository
         $this->model->end_time       = $request->end_time;
         $this->model->created_by_id  = Auth::id();
         $this->model->save();
+        $this->storePrices($request->prices);
     }
 
     /**
@@ -65,5 +67,34 @@ class VenueRepository
                 "created_by_id" => Auth::id()
             ]);
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function validationRules()
+    {
+        $categories = config('venue.categories');
+        $cat = '';
+        foreach ($categories as $category){
+            $cat = $cat."$category".",";
+        }
+        return [
+            "name"           => "required|max:255",
+            "venue_category" => "required|in:$cat",
+            "capacity"       => "required|numeric",
+            "city"           => "required|max:255",
+            "prices"         => "required",
+            "prices.*"       => "numeric",
+            "zip_code"       => "sometimes|max:5",
+            "phone"          => "required|max:18",
+            "start_time"     => "sometimes|nullable|date_format:H:i",
+            "area_id"        => "required",
+            "end_time"       => "sometimes|nullable|date_format:H:i",
+            "email"          => "sometimes|email",
+            "address"        => "required",
+            "venue_image"    => "required|file|max:5000",
+            "website"        => "sometimes|max:255"
+        ];
     }
 }
