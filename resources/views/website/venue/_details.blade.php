@@ -49,9 +49,30 @@
             <div class="form-group">
                 <input type="text" name="facebook" value="{{ old('facebook') }}" placeholder="Facebook" class="form-control form-control-alternative">
             </div>
-            @if($errors->has('faceook'))
+            @if($errors->has('facebook'))
                 <p class="text-danger">{{ $errors->first('facebook') }}</p>
             @endif
+        </div>
+
+        <!-- Image -->
+
+        <div class="col-md-12">
+            <table id="pricing-list-container">
+                <tr class="pricing-list-item pattern">
+                    <td class="col-md-12">
+                        <div class="fm-input pricing-name">
+                            <label style="color: black" class="custom-select form-control-alternative">
+                                Venue Image*
+                            </label>
+                        </div>
+                        <div class="fm-input pricing-ingredients">
+                            <div class="form-group">
+                                <input required name="venue_image"  type="file" placeholder="Venue Image*" class="form-control form-control-alternative">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
 
     </div>

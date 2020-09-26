@@ -3,14 +3,16 @@
 namespace App\CCIMS\Venue;
 
 use App\Area;
+use App\CCIMS\Files\FileManager;
 use App\Venue;
 use App\VenuePrice;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class VenueRepository
 {
+    use FileManager;
+
     private $model;
 
     public function __construct(Venue $venue)
@@ -31,6 +33,8 @@ class VenueRepository
      */
     public function store(Request $request)
     {
+        $image = $this->storeFile($request, 'venue_image','venue_image');
+        if($image) $this->model->venue_image = $image;
         $this->model->name           = $request->name;
         $this->model->venue_category = $request->venue_category;
         $this->model->capacity       = $request->capacity;

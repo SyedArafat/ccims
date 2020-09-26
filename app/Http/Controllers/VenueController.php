@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CCIMS\Files\FileManager;
 use App\CCIMS\Venue\VenueRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -59,7 +60,7 @@ class VenueController extends Controller
         return [
             "name"           => "required|max:255",
             "venue_category" => "required|in:$cat",
-            "capacity"       => "required|numeric",
+            "capacity"       => "required|numeric|max:11",
             "city"           => "required|max:255",
             "prices"         => "required",
             "prices.*"       => "numeric",
@@ -70,6 +71,7 @@ class VenueController extends Controller
             "end_time"       => "sometimes|nullable|date_format:H:i",
             "email"          => "sometimes|email",
             "address"        => "required",
+            "venue_image"    => "required|file|max:5000",
             "website"        => "sometimes|max:255"
         ];
     }

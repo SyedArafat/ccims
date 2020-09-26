@@ -25,7 +25,7 @@
 
                     @include('website._error_alerts')
 
-                    {!! Form::open(['method' => 'POST', 'action' => 'VenueController@store']) !!}
+                    {!! Form::open(['method' => 'POST', 'action' => 'VenueController@store', "files"=>true]) !!}
                         <div id="add-listing" class="separated-form">
                             <!-- Section -->
                             @include('website.venue._basic_info')
