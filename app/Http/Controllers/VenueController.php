@@ -12,6 +12,7 @@ use Illuminate\View\View;
 class VenueController extends Controller
 {
     private $venueRepository;
+    private $areas;
 
     public function __construct(VenueRepository $venue)
     {
@@ -46,9 +47,26 @@ class VenueController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param Venue $venue
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
     public function edit(Venue $venue)
     {
         $areas = $this->venueRepository->all_areas();
         return view('website.venue.edit', compact('venue', 'areas'));
+    }
+
+    //TODO
+    public function update(Request $request, Venue $venue)
+    {
+        return $request->all();
+    }
+
+    public function indexList()
+    {
+        $areas  = $this->venueRepository->all_areas();
+        $venues = $this->venueRepository->all();
+        return view('website.venue.index_list', compact("areas",'venues'));
     }
 }

@@ -1,3 +1,7 @@
+@php
+    $facilities = json_decode($venue->facilities, true);
+    $facilities = $facilities ? $facilities : [];
+@endphp
 <div class="add-listing-section mb-4">
     <!-- Headline -->
     <div class="add-listing-headline">
@@ -67,7 +71,8 @@
                         </div>
                         <div class="fm-input pricing-ingredients">
                             <div class="form-group">
-                                <input required name="venue_image"  type="file" placeholder="Venue Image*" class="form-control form-control-alternative">
+                                <img id="blah" src="{{ asset($venue->venue_image) }}" alt="your image" />
+                                <input onchange="readURL(this);" name="venue_image" type="file" id="venue_image" placeholder="Venue Image*" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </td>
@@ -81,31 +86,31 @@
     <h5 class="margin-top-30 margin-bottom-10">Amenities <span>(optional)</span></h5>
     <div class="checkboxes checkbox-group in-row margin-bottom-20">
         <div class="custom-control custom-checkbox mb-3 pl-0">
-            <input name="facilities[]" value="elevator" class="custom-control-input" id="customCheck1" type="checkbox">
+            <input name="facilities[]" @if(in_array('elevator', $facilities)) checked @endif value="elevator" class="custom-control-input" id="customCheck1" type="checkbox">
             <label class="custom-control-label" for="customCheck1">
                 <span>Elevator</span>
             </label>
         </div>
         <div class="custom-control custom-checkbox mb-3 pl-0">
-            <input name="facilities[]" value="friendly_workspace" class="custom-control-input" id="customCheck2" type="checkbox">
+            <input name="facilities[]" @if(in_array('friendly_workspace', $facilities)) checked @endif value="friendly_workspace" class="custom-control-input" id="customCheck2" type="checkbox">
             <label class="custom-control-label" for="customCheck2">
                 <span>Friendly workspace</span>
             </label>
         </div>
         <div class="custom-control custom-checkbox mb-3 pl-0">
-            <input name="facilities[]" value="instant_book" class="custom-control-input" id="customCheck3" type="checkbox">
+            <input name="facilities[]" @if(in_array('instant_book', $facilities)) checked @endif value="instant_book" class="custom-control-input" id="customCheck3" type="checkbox">
             <label class="custom-control-label" for="customCheck3">
                 <span>Instant Book</span>
             </label>
         </div>
         <div class="custom-control custom-checkbox mb-3 pl-0">
-            <input name="facilities[]" value="free_parking" class="custom-control-input" id="customCheck5" type="checkbox">
+            <input name="facilities[]" @if(in_array('free_parking', $facilities)) checked @endif value="free_parking" class="custom-control-input" id="customCheck5" type="checkbox">
             <label class="custom-control-label" for="customCheck5">
                 <span>Free parking on premises</span>
             </label>
         </div>
         <div class="custom-control custom-checkbox mb-3 pl-0">
-            <input name="facilities[]" value="all_events" class="custom-control-input" id="customCheck8" type="checkbox">
+            <input name="facilities[]" @if(in_array('all_events', $facilities)) checked @endif value="all_events" class="custom-control-input" id="customCheck8" type="checkbox">
             <label class="custom-control-label" for="customCheck8">
                 <span>All Events</span>
             </label>
@@ -113,3 +118,20 @@
     </div>
     <!-- Checkboxes / End -->
 </div>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(250)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

@@ -29,6 +29,14 @@ class VenueRepository
     }
 
     /**
+     * @return Venue[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function all()
+    {
+        return $this->model->all();
+    }
+
+    /**
      * @param Request $request
      */
     public function store(Request $request)

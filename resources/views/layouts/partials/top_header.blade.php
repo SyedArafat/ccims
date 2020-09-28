@@ -30,30 +30,10 @@
                                 <a class="current" href="{{ route('home') }}">Home</a>
                             </li>
                             <li>
-                                <a href="#">Listings</a>
+                                <a href="#">Venues</a>
                                 <ul>
                                     <li>
-                                        <a href="#">List Layout</a>
-                                        <ul>
-                                            <li><a href="listings-list-with-sidebar.html">With Sidebar</a></li>
-                                            <li><a href="listings-list-full-width.html">Full Width</a></li>
-                                            <li><a href="listings-list-full-width-map.html">Full Width + Map</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Grid Layout</a>
-                                        <ul>
-                                            <li><a href="listings-grid-with-sidebar.html">With Sidebar</a></li>
-                                            <li><a href="listings-grid-full-width.html">Full Width</a></li>
-                                            <li><a href="listings-grid-full-width-map.html">Full Width + Map</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Half Screen Map</a>
-                                        <ul>
-                                            <li><a href="listings-half-screen-map-list.html">Layout 1</a></li>
-                                            <li><a href="listings-half-screen-map-grid.html">Layout 2</a></li>
-                                        </ul>
+                                        <a href="{{ route('venue.index_list') }}">All Venues</a>
                                     </li>
                                     <li>
                                         <a href="#">Detail</a>

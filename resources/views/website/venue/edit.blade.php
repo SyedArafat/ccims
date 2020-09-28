@@ -9,27 +9,27 @@
 
                     @include('website._error_alerts')
 
-                    {!! Form::open(['method' => 'POST', 'action' => 'VenueController@store', "files"=>true]) !!}
+                    {!! Form::open(['method' => 'PATCH', 'action' => ['VenueController@update', $venue], "files"=>true]) !!}
                     <div id="add-listing" class="separated-form">
                         <!-- Section -->
                     @include('website.venue._edit_basic_info')
                     <!-- Section / End -->
                         <!-- Section -->
-                    @include('website.venue._location')
+                    @include('website.venue._edit_location')
                     <!-- Section / End -->
                         <!-- Section -->
                     @include('website.venue._edit_details')
                     <!-- Section / End -->
                         <!-- Section -->
-                    @include("website.venue._open_days")
+                    @include("website.venue._edit_open_days")
                     <!-- Section / End -->
                         <!-- Section -->
-                    @include('website.venue._opening_hours')
+                    @include('website.venue._edit_opening_hours')
                     <!-- Section / End -->
                         <!-- Section -->
-                    @include('website.venue._pricing')
+                    @include('website.venue._edit_pricing')
                     <!-- Section / End -->
-                        <button class="btn btn-lg btn-primary mt-4" type="submit">Add Venue</button>
+                        <button class="btn btn-lg btn-primary mt-4" type="submit">Update Venue</button>
                     </div>
                     {!! Form::close() !!}
                 </div>
