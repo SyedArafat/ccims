@@ -57,10 +57,24 @@ class VenueController extends Controller
         return view('website.venue.edit', compact('venue', 'areas'));
     }
 
-    //TODO
+
+    /**
+     * @param Request $request
+     * @param Venue $venue
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws ValidationException
+     */
     public function update(Request $request, Venue $venue)
     {
-        return $request->all();
+//        return $request->all();
+        $this->validate($request, $this->venueRepository->validationRules(true));
+        if (($request->start_time == null && $request->end_time != null) || $request->start_time != null && $request->end_time == null) {
+            Session::flash("error", "Invalid start time or end time. Please try again");
+            return redirect()->back()->withInput();
+        }
+        $this->venueRepository->update($request, $venue);
+        Session::flash("success", "Venue updated");
+        return redirect()->back();
     }
 
     public function indexList()

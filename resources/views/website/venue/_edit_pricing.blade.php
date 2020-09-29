@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="fm-input pricing-ingredients">
                                     <div class="form-group">
-                                        <input required name="prices[{{$price->category_type}}]" value="{{ $price->price }}" type="number" placeholder="Price*" class="form-control form-control-alternative">
+                                        <input required name="prices[{{$price->id}}]" value="{{ $price->price }}" type="number" placeholder="Price*" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                             </td>

@@ -41,7 +41,7 @@
             <!-- Zip-Code -->
             <div class="col-md-6">
                 <div class="form-group">
-                    <input type="text" value="{{ $venue->zip_codeVe }}" maxlength="5" name="zip_code" placeholder="Zip Code" class="form-control form-control-alternative">
+                    <input type="text" value="{{ $venue->zip_code }}" maxlength="5" name="zip_code" placeholder="Zip Code" class="form-control form-control-alternative">
                 </div>
                 @if($errors->has('zip_code'))
                     <p class="text-danger">{{ $errors->first('zip_code') }}</p>
