@@ -71,7 +71,7 @@
                         </div>
                         <div class="fm-input pricing-ingredients">
                             <div class="form-group">
-                                <img id="blah" src="{{ asset($venue->venue_image) }}" alt="your image" />
+                                <img class="edit-image-position" id="blah" width="250" height="200" src="{{ asset($venue->venue_image) }}" alt="your image" />
                                 <input onchange="readURL(this);" name="venue_image" type="file" id="venue_image" placeholder="Venue Image*" class="form-control form-control-alternative">
                             </div>
                         </div>

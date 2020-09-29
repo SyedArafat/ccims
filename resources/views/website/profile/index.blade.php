@@ -88,7 +88,7 @@
                                                     <span> <small>{{ $venue->venue_category }}</small> </span>
                                                     @for ($i=0; $i<2; $i++)
                                                         @if(isset($facilities[$i]))
-                                                            <div class="mt-3"><span class="badge badge-pill badge-primary text-uppercase">{{ $facilities[$i] }}</span></div>
+                                                            <div class="mt-3"><span class="badge badge-pill badge-primary text-uppercase">{{ str_replace("_", " ", $facilities[$i]) }}</span></div>
                                                         @endif
                                                     @endfor
                                                 </div>
