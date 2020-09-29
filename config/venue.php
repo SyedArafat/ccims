@@ -3,9 +3,9 @@
 return [
     "categories" => [
         "Eat & Drink",
-        "Hotels",
-        "Restaurants",
-        "Events"
+        "Hotel",
+        "Restaurant",
+        "Event"
     ],
 
     "price_categories" => [

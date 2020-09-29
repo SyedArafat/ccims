@@ -31,14 +31,14 @@
                                         </div>
                                         <!-- Content -->
                                         <div class="listing-item-content">
-                                            <span class="badge badge-pill list-banner badge-success text-uppercase">Now Open</span>
+                                            <span class="badge badge-pill list-banner @if(isNowOpen($venue->id)) badge-success @else badge-warning @endif text-uppercase"> @if(isNowOpen($venue->id)) Now Open @else Closed @endif</span>
                                             <div class="listing-item-inner">
                                                 <!-- <DirectlistRating [rate]="list.rating"></DirectlistRating> -->
                                                 <a href="listings-detail-two.html">
                                                     <h3>{{ $venue->name }}</h3>
                                                 </a>
-                                                <div class="address-bar"> <small>4340  Cambridge Court Natural Dam, Arkansas</small> </div>
-                                                <div class="mt-3"><span class="badge badge-pill badge-primary text-uppercase badge-cat">Eat & Drink</span></div>
+                                                <div class="address-bar"> <small>{{ $venue->city.", ".$venue->area->area_name  }}</small> </div>
+                                                <div class="mt-3"><span class="badge badge-pill badge-primary text-uppercase badge-cat">{{ $venue->venue_category }}</span></div>
                                             </div>
                                             <span class="round-pill like-banner d-block bg-primary"><i class="fa fa-heart-o"></i></span>
                                         </div>

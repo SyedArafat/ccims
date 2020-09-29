@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CCIMS\Venue\VenueRepository;
 use App\Venue;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
@@ -66,7 +67,6 @@ class VenueController extends Controller
      */
     public function update(Request $request, Venue $venue)
     {
-//        return $request->all();
         $this->validate($request, $this->venueRepository->validationRules(true));
         if (($request->start_time == null && $request->end_time != null) || $request->start_time != null && $request->end_time == null) {
             Session::flash("error", "Invalid start time or end time. Please try again");

@@ -1,7 +1,9 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Schema\Blueprint;
 use \Illuminate\Support\Facades\Auth;
+use App\Venue;
 
 if( !function_exists("checkPermission"))
 {
@@ -78,6 +80,25 @@ if ( !function_exists('commonDbFields') )
         $table->integer('updated_by_id')->nullable();
         $table->timestamp('created_at', $precision)->nullable();
         $table->timestamp('updated_at', $precision)->nullable();
+    }
+}
+
+if ( !function_exists('isNowOpen') )
+{
+    /**
+     * @param $venue_id
+     * @return bool
+     */
+    function isNowOpen($venue_id)
+    {
+        $venue = Venue::find($venue_id);
+        $now = Carbon::now()->toTimeString();
+        $day = (Carbon::now()->format('l'));
+        if(empty(json_decode($venue->open_days,1))) return false;
+        if(!in_array(strtolower($day), json_decode($venue->open_days,1))) return false;
+        if($venue->start_time == null || $venue->end_time == null) return true;
+        if($now >= $venue->start_time && $now <= $venue->end_time) return true;
+        return false;
     }
 }
 

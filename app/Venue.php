@@ -10,4 +10,9 @@ class Venue extends Model
     {
         return $this->hasMany(VenuePrice::class);
     }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class,'area_id', 'id');
+    }
 }
