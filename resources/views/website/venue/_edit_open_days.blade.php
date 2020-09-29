@@ -1,5 +1,6 @@
 @php
     $open_days = json_decode($venue->open_days, true);
+    $open_days = $open_days ? $open_days : [];
 @endphp
 <div class="add-listing-section mb-4">
     <!-- Headline -->
