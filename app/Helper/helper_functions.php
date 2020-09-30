@@ -86,18 +86,21 @@ if ( !function_exists('commonDbFields') )
 if ( !function_exists('isNowOpen') )
 {
     /**
-     * @param $venue_id
+     * @param $venue
      * @return bool
      */
-    function isNowOpen($venue_id)
+    function isNowOpen(Venue $venue)
     {
-        $venue = Venue::find($venue_id);
         $now = Carbon::now()->toTimeString();
         $day = (Carbon::now()->format('l'));
         if(empty(json_decode($venue->open_days,1))) return false;
         if(!in_array(strtolower($day), json_decode($venue->open_days,1))) return false;
         if($venue->start_time == null || $venue->end_time == null) return true;
         if($now >= $venue->start_time && $now <= $venue->end_time) return true;
+        if($venue->start_time > $venue->end_time){
+            if($now > $venue->end_time && $now < $venue->start_time) return false;
+            else return true;
+        }
         return false;
     }
 }

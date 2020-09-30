@@ -80,7 +80,7 @@ class VenueController extends Controller
     public function indexList()
     {
         $areas  = $this->venueRepository->all_areas();
-        $venues = $this->venueRepository->all();
+        $venues = Venue::all();
         return view('website.venue.index_list', compact("areas",'venues'));
     }
 }

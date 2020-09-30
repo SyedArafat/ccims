@@ -82,7 +82,7 @@
                                             </div>
                                             <!-- Content -->
                                             <div class="listing-item-content">
-                                                <span class="badge badge-pill list-banner badge-success text-uppercase">Open</span>
+                                                <span class="badge badge-pill list-banner @if(isNowOpen($venue)) badge-success @else badge-warning @endif text-uppercase">@if(isNowOpen($venue)) Now Open @else Closed @endif</span>
                                                 <div class="listing-item-inner">
                                                     <h3>{{ $venue->name }}</h3>
                                                     <span> <small>{{ $venue->venue_category }}</small> </span>

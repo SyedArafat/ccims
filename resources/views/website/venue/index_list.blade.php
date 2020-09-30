@@ -31,7 +31,7 @@
                                         </div>
                                         <!-- Content -->
                                         <div class="listing-item-content">
-                                            <span class="badge badge-pill list-banner @if(isNowOpen($venue->id)) badge-success @else badge-warning @endif text-uppercase"> @if(isNowOpen($venue->id)) Now Open @else Closed @endif</span>
+                                            <span class="badge badge-pill list-banner @if(isNowOpen($venue)) badge-success @else badge-warning @endif text-uppercase"> @if(isNowOpen($venue)) Now Open @else Closed @endif</span>
                                             <div class="listing-item-inner">
                                                 <!-- <DirectlistRating [rate]="list.rating"></DirectlistRating> -->
                                                 <a href="listings-detail-two.html">
