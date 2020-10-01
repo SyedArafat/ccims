@@ -48,7 +48,7 @@
                         @endforeach
                     </div>
                     <!-- Pagination -->
-                    @include('website._pagination')
+                    {{ $venues->links()  }}
                     <!-- Pagination / End -->
                 </div>
             </div>

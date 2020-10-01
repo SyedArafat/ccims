@@ -77,11 +77,10 @@ class VenueController extends Controller
         return redirect()->back();
     }
 
-    public function indexList(Request $request)
+    public function indexList()
     {
-        $total_venues = Venue::all()->count();
         $areas  = $this->venueRepository->all_areas();
-        $venues = Venue::with('area')->limit(10)->get();
-        return view('website.venue.index_list', compact("areas",'venues', 'total_venues'));
+        $venues = Venue::with('area')->paginate(2);
+        return view('website.venue.index_list', compact("areas",'venues'));
     }
 }
