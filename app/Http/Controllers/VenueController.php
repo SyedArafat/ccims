@@ -77,10 +77,13 @@ class VenueController extends Controller
         return redirect()->back();
     }
 
-    public function indexList()
+    public function indexList(Request $request)
     {
         $areas  = $this->venueRepository->all_areas();
-        $venues = Venue::with('area')->paginate(2);
-        return view('website.venue.index_list', compact("areas",'venues'));
+        $venues = Venue::with('area');
+        if (isset($request->area_id)) $venues = $venues->where('area_id','=', $request->area_id);
+        if (isset($request->venue_category)) $venues = $venues->where('venue_category','=', $request->venue_category);
+        $venues = $venues->paginate(10);
+        return view('website.venue.index_list', compact("areas",'venues', 'request'));
     }
 }
