@@ -9,10 +9,8 @@
                         <div class="detail-tile mb-4">
                             <h3> {{$venue->name}} <span class="badge badge-pill badge-success text-uppercase">Open</span>
                             </h3>
-                            <p>Dingloy Place, Remington, London, EC1V 8BP, United Kingdom</p>
-                            <span class="badge badge-pill badge-info text-uppercase mr-2">Dinner</span>
-                            <span class="badge badge-pill badge-info text-uppercase mr-2">Hotel</span>
-                            <span class="badge badge-pill badge-info text-uppercase">Sea Foods</span>
+                            <p>{{ $venue->address.", ".$venue->area->area_name.", ". $venue->city }}</p>
+                            <span class="badge badge-pill badge-info text-uppercase">{{ $venue->venue_category }}</span>
                         </div>
                         <div class="nav-wrapper">
                             <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
@@ -34,10 +32,8 @@
                             <div class="card-body">
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade active show" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
-                                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat rerum doloribus repudiandae nulla odit, omnis ex, a assumenda fugiat quasi neque necessitatibus fugit maiores quis. Quo dolor minus pariatur natus!</p>
-                                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat rerum doloribus repudiandae nulla odit, omnis ex, a assumenda fugiat quasi neque necessitatibus fugit maiores quis. Quo dolor minus pariatur natus! Lorem ipsum dolor sit amet
-                                            consectetur adipisicing elit. Blanditiis quis laudantium est pariatur, harum laboriosam odit delectus vitae minima dolorem ipsam repudiandae sunt non. Dolorem adipisci voluptates doloribus voluptatum nihil.
-                                        </p>
+                                        <p class="description">{{ $venue->description }}</p>
+                                        <p class="description">A place where you can spend some wonderful time with your family and create memories.</p>
                                         <h4 class="mb-4">
                                             Contact Info
                                         </h4>
@@ -45,66 +41,56 @@
                                             <div class="col-lg-4">
                                                 <div class="detail-list mb-2">
                                                     <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-phone mr-2"></i>
-                                                        <small class="text-uppercase font-weight-bold">Reception.</small>
+                                                        <small class="text-uppercase font-weight-bold">Contact Number.</small>
                                                     </div>
-                                                    <p class="m-0 text-small">+123 123 456 45</p>
+                                                    <p class="m-0 text-small">{{ $venue->phone }}</p>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4">
-                                                <div class="detail-list mb-2">
-                                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-phone mr-2"></i>
-                                                        <small class="text-uppercase font-weight-bold">For Complaints.</small>
+                                            @if(($venue->email))
+                                                <div class="col-lg-4">
+                                                    <div class="detail-list mb-2">
+                                                        <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-mail-forward mr-2"></i>
+                                                            <small class="text-uppercase font-weight-bold">Email.</small>
+                                                        </div>
+                                                        <p class="m-0 text-small">{{ $venue->email }}</p>
                                                     </div>
-                                                    <p class="m-0 text-small">+123 123 456 45</p>
                                                 </div>
-                                            </div>
+                                            @endif
                                             <div class="col-lg-4">
                                                 <div class="detail-list mb-2">
-                                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-phone mr-2"></i><small class="text-uppercase font-weight-bold">Support.</small>
+                                                    <div class="detail-list-label mb-1"><i aria-hidden="true" class="fa fa-facebook mr-2"></i><small class="text-uppercase font-weight-bold">Facebook.</small>
                                                     </div>
-                                                    <p class="m-0 text-small">+123 123 456 45</p>
+                                                    <a href="{{$venue->facebook}}" class="m-0 text-small">Visit Page</a>
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php
+                                        /** @var \App\Venue $venue */
+                                        $facilities = (json_decode($venue->facilities, true));
+                                        $facilities = $facilities ? $facilities : [];
+                                        ?>
                                         <h4 class="mb-4">Features</h4>
-                                        <span class="badge badge-pill badge-primary text-uppercase mr-2 mb-2">Swimming pool</span>
-                                        <span class="badge badge-pill badge-primary text-uppercase mr-2 mb-2"> Free WiFi Internet Access Included</span>
-                                        <span class="badge badge-pill badge-primary text-uppercase mr-2 mb-2"> Free Parking</span>
-                                        <span class="badge badge-pill badge-primary text-uppercase mr-2 mb-2">Swimmingpool Outdoor</span>
-                                        <span class="badge badge-pill badge-primary text-uppercase mr-2 mb-2">Family Rooms</span>
-                                        <span class="badge badge-pill badge-primary text-uppercase mr-2 mb-2">Non Smoking Rooms</span>
+                                        @for($i=0; $i<count($facilities); $i++)
+                                            <span class="badge badge-pill badge-primary text-uppercase mr-2 mb-2">{{ str_replace("_", " ", $facilities[$i]) }}</span>
+                                        @endfor
                                     </div>
                                     <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
-                                        <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                                        <p class="description">{{ $venue->address.", ".$venue->area->area_name.", ".$venue->city }}</p>
                                         <div>
-                                            <!-- <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px">
+                                             <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px">
                                   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-                                  </agm-map> -->
+                                  </agm-map>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
                                         <div class="pricing-list-container">
                                             <ul>
-                                                <li>
-                                                    <h5>Classic Burger</h5>
-                                                    <p>Beef, salads, mayonnaise, spicey relish, cheese</p>
-                                                    <span>$6</span>
-                                                </li>
-                                                <li>
-                                                    <h5>Cheddar Burger</h5>
-                                                    <p>Cheddar cheese, lettuce, tomato, onion, dill pickles</p>
-                                                    <span>$6</span>
-                                                </li>
-                                                <li>
-                                                    <h5>Veggie Burger</h5>
-                                                    <p>Panko crumbed and fried, grilled peppers and mushroom</p>
-                                                    <span>$6</span>
-                                                </li>
-                                                <li>
-                                                    <h5>Chicken Burger</h5>
-                                                    <p>Cheese, chicken fillet, avocado, bacon, tomatoes, basil</p>
-                                                    <span>$6</span>
-                                                </li>
+                                                @foreach($venue->prices as $price)
+                                                    <li>
+                                                        <h5>{{ ucfirst(preg_replace('/_/', ' ', $price->category_type)) }}</h5>
+                                                        <span> {{ $price->price }}</span>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
