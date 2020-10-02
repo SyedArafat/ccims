@@ -55,5 +55,6 @@ Route::middleware('auth')->group(function (){
         Route::get('/venue/{venue}/edit', 'VenueController@edit')->name('venue.edit');
         Route::patch('/venue/{venue}/update', 'VenueController@update')->name('venue.update');
         Route::get('/venue', 'VenueController@indexList')->name('venue.index_list');
+        Route::get('/venue/{venue}', 'VenueController@show')->name('venue.show');
     });
 });

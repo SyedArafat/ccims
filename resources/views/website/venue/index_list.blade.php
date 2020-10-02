@@ -27,14 +27,14 @@
                                     <div class="listing-item">
                                         <!-- Image -->
                                         <div class="listing-item-image">
-                                            <a href="listings-detail-one.html"><img src="{{ asset($venue->venue_image) }}" alt=""></a>
+                                            <a href="{{ route('venue.show', $venue->id) }}"><img src="{{ asset($venue->venue_image) }}" alt=""></a>
                                         </div>
                                         <!-- Content -->
                                         <div class="listing-item-content">
                                             <span class="badge badge-pill list-banner @if(isNowOpen($venue)) badge-success @else badge-warning @endif text-uppercase"> @if(isNowOpen($venue)) Now Open @else Closed @endif</span>
                                             <div class="listing-item-inner">
                                                 <!-- <DirectlistRating [rate]="list.rating"></DirectlistRating> -->
-                                                <a href="listings-detail-two.html">
+                                                <a href="{{ route('venue.show', $venue->id) }}">
                                                     <h3>{{ $venue->name }}</h3>
                                                 </a>
                                                 <div class="address-bar"> <small>{{ $venue->city.", ".$venue->area->area_name  }}</small> </div>
@@ -48,7 +48,7 @@
                         @endforeach
                     </div>
                     <!-- Pagination -->
-                    {{ $venues->links()  }}
+                    {{ $venues->appends(\Illuminate\Support\Facades\Request::all())->links()  }}
                     <!-- Pagination / End -->
                 </div>
             </div>

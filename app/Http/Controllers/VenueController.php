@@ -77,6 +77,10 @@ class VenueController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
     public function indexList(Request $request)
     {
         $areas  = $this->venueRepository->all_areas();
@@ -85,5 +89,10 @@ class VenueController extends Controller
         if (isset($request->venue_category)) $venues = $venues->where('venue_category','=', $request->venue_category);
         $venues = $venues->paginate(10);
         return view('website.venue.index_list', compact("areas",'venues', 'request'));
+    }
+
+    public function show(Venue $venue)
+    {
+        return view('website.venue.show', compact('venue'));
     }
 }
