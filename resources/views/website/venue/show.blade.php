@@ -108,7 +108,7 @@
                                 <span class="badge badge-pill badge-info text-uppercase">{{ $venue->venue_category }}</span>
                             </div>
                             <div class="col-sm-4">
-                                <a href="#" title="Love it" class="love-btn btn-counter" data-count="0"><span class="love-icon">&#x2764;</span></a>
+                                <a href="{{ route('venue_favourite.store', [$venue->id, $venue->creator->id]) }}" title="Love it" class="love-btn btn-counter" data-count="0"><span class="love-icon">&#x2764;</span></a>
                             </div>
                         </div>
                         <div class="nav-wrapper">
@@ -299,11 +299,20 @@
                     count = $this.attr('data-count'),
                     active = $this.hasClass('active'),
                     multiple = $this.hasClass('multiple-count');
+                let url=$(this).attr('href')
                 if($this.hasClass('active')){
                     alert("ac");
+
                 }
                 else{
-                    alert("i puk ur");
+                    $.ajax({
+                        url : url,
+                        method : "get",
+                        success : function (response) {
+                            console.log(response);
+                        }
+
+                    });
                 }
                 $.fn.noop = $.noop;
                 $this.attr('data-count', !active || multiple ? ++count : --count)[multiple ? 'noop' : 'toggleClass']('active');

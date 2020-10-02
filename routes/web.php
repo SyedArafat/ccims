@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function (){
         Route::get('/user/profile', 'ProfileController@index')->name('user.profile');
         Route::post('user/{user}/update-profile-photo', "ProfileController@updateProfilePhoto");
         Route::post('user/{user}/update-profile-info', "ProfileController@updateProfileInfo");
+        Route::get('venue/{venue}/favourite/{user}', 'FavouriteController@store')->name('venue_favourite.store');
     });
 
     /*
