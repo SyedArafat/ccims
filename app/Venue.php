@@ -15,4 +15,9 @@ class Venue extends Model
     {
         return $this->belongsTo(Area::class,'area_id', 'id');
     }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by_id','id');
+    }
 }

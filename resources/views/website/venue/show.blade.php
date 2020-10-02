@@ -80,13 +80,13 @@
         .love-btn:hover,
         .love-btn.active {
             text-shadow: 0 1px 0 #b12f27;
-            background-color: #f64136;
+            background-color: #f69b8e;
             border-color: #b12f27;
         }
         .love-btn:active { box-shadow: 0 0 5px 3px rgba(0,0,0,0.2) inset; }
-        .love-btn span { color: #f64136; }
+        .love-btn span { color: #f69b8e; }
         .love-btn:hover, .love-btn:hover span,
-        .love-btn.active, .love-btn.active span { color: #eeeeee; }
+        .love-btn.active, .love-btn.active span { color: #ee1716; }
         .love-btn:active span {
             color: #b12f27;
             text-shadow: 0 1px 0 rgba(255,255,255,0.3);
@@ -98,7 +98,7 @@
     <div class="container">
         <div class="content">
             <div class="row sticky-wrapper">
-                <div class="col-lg-8 col-md-8">
+                <div class="col-lg-9 col-md-9">
                     <div class="">
                         <div class="row">
                             <div class="col-sm-8 detail-tile mb-4">
@@ -172,6 +172,15 @@
                                         @for($i=0; $i<count($facilities); $i++)
                                             <span class="badge badge-pill badge-primary text-uppercase mr-2 mb-2">{{ str_replace("_", " ", $facilities[$i]) }}</span>
                                         @endfor
+                                        <?php
+                                        /** @var \App\Venue $venue */
+                                        $open_days = (json_decode($venue->open_days, true));
+                                        $open_days = $open_days ? $open_days : [];
+                                        ?>
+                                        <h4 class="mb-4">Open Days</h4>
+                                        @for($i=0; $i<count($open_days); $i++)
+                                            <span class="badge badge-pill badge-primary text-uppercase mr-2 mb-2">{{ str_replace("_", " ", $open_days[$i]) }}</span>
+                                        @endfor
                                     </div>
                                     <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
                                         <p class="description">{{ $venue->address.", ".$venue->area->area_name.", ".$venue->city }}</p>
@@ -233,7 +242,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="sticky">
                         <!-- Book Now -->
                         <div class="boxed-widget booking-widget">
@@ -264,16 +273,15 @@
                             <h4 class="mb-4">Key People</h4>
                             <div class="mb-3">
                                 <div class="mb-2">
-                                    <img class="img-fluid rounded-circle shadow-lg" width="80" height="80" src="assets/images/thumb-1.jpg" alt="image">
+                                    <img class="img-fluid rounded-circle shadow-lg" width="80" height="80" src="@if($venue->creator->profile->profile_photo) {{ asset($user->profile->profile_photo) }} @else {{ asset("assets/images/default-avatar.png") }} @endif" alt="image">
                                 </div>
                                 <div class="">
-                                    <h5 class="text-primary">Victoria Benson</h5>
+                                    <h5 class="text-primary">{{ $venue->creator->name }}</h5>
                                 </div>
                             </div>
                             <ul class="listing-details-sidebar">
-                                <li><i class="fa fa-phone"></i> (123) 123-456</li>
-                                <li><i class="fa fa-external-link"></i> http://example.com</li>
-                                <li><i class="fa fa-envelope-o"></i>victoria@victoria.com</li>
+                                <li><i class="fa fa-phone"></i> {{ $venue->creator->mobile }}</li>
+                                <li><i class="fa fa-envelope-o"></i>{{ $venue->creator->email }}</li>
                             </ul>
                         </div>
                     </div>
@@ -282,27 +290,21 @@
         </div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-    <script>
+    <script type="text/javascript">
             $('.btn-counter').on('click', function (event, count) {
                 event.preventDefault();
-
                 var $this = $(this),
                     count = $this.attr('data-count'),
                     active = $this.hasClass('active'),
                     multiple = $this.hasClass('multiple-count');
-
-                // First method, allows to add custom function
-                // Use when you want to do an ajax request
-                /* if (multiple) {
-                $this.attr('data-count', ++count);
-                // Your code here
-                } else {
-                $this.attr('data-count', active ? --count : ++count).toggleClass('active');
-                // Your code here
-                } */
-
-                // Second method, use when ... I dunno when but it looks cool and that's why it is here
+                if($this.hasClass('active')){
+                    alert("ac");
+                }
+                else{
+                    alert("i puk ur");
+                }
                 $.fn.noop = $.noop;
                 $this.attr('data-count', !active || multiple ? ++count : --count)[multiple ? 'noop' : 'toggleClass']('active');
 
