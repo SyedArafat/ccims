@@ -1,5 +1,5 @@
 @extends('layouts.website')
-@section('title', "Add venue")
+@section('title', "Venue List")
 @section('body_content')
     <div class="content">
         <div class="container">
@@ -40,7 +40,9 @@
                                                 <div class="address-bar"> <small>{{ $venue->city.", ".$venue->area->area_name  }}</small> </div>
                                                 <div class="mt-3"><span class="badge badge-pill badge-primary text-uppercase badge-cat">{{ $venue->venue_category }}</span></div>
                                             </div>
-                                            <span class="round-pill like-banner d-block bg-primary"><i class="fa fa-heart-o"></i></span>
+                                            <span class="round-pill like-banner d-block bg-primary">
+
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

@@ -1,16 +1,115 @@
 @extends('layouts.website')
 @section('title', "Venue Detail")
 @section('body_content')
+    <style>
+        html {
+            background: #f5f5f5;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        }
+
+        h3 {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        p { padding-left: 10px; }
+
+
+        /*
+         * Basic button style
+         */
+        .love-btn {
+            box-shadow: 1px 1px 0 rgba(255,255,255,0.5) inset;
+            border-radius: 3px;
+            border: 2px solid;
+            display: inline-block;
+            height: 36px;
+            line-height: 36px;
+            padding: 0 12px;
+            position: relative;
+
+            font-size: 12px;
+            text-decoration: none;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+        }
+        /*
+         * Counter button style
+         */
+        .btn-counter { margin-right: 39px; }
+        .btn-counter:after,
+        .btn-counter:hover:after { text-shadow: none; }
+        .btn-counter:after {
+            border-radius: 3px;
+            border: 1px solid #d3d3d3;
+            background-color: #eee;
+            padding: 0 8px;
+            color: #777;
+            content: attr(data-count);
+            left: 100%;
+            margin-left: 8px;
+            margin-right: -13px;
+            position: absolute;
+            top: -1px;
+        }
+        .btn-counter:before {
+            transform: rotate(45deg);
+            filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476, sizingMethod='auto expand');
+
+            background-color: #eee;
+            border: 1px solid #d3d3d3;
+            border-right: 0;
+            border-top: 0;
+            content: '';
+            position: absolute;
+            right: -13px;
+            top: 5px;
+            height: 6px;
+            width: 6px;
+            z-index: 1;
+            zoom: 1;
+        }
+        /*
+         * Custom styles
+         */
+        .love-btn {
+            background-color: #dbdbdb;
+            border-color: #bbb;
+            color: #666;
+        }
+        .love-btn:hover,
+        .love-btn.active {
+            text-shadow: 0 1px 0 #b12f27;
+            background-color: #f64136;
+            border-color: #b12f27;
+        }
+        .love-btn:active { box-shadow: 0 0 5px 3px rgba(0,0,0,0.2) inset; }
+        .love-btn span { color: #f64136; }
+        .love-btn:hover, .love-btn:hover span,
+        .love-btn.active, .love-btn.active span { color: #eeeeee; }
+        .love-btn:active span {
+            color: #b12f27;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+        }
+        .love-icon {
+            font-size: 28px;
+        }
+    </style>
     <div class="container">
         <div class="content">
             <div class="row sticky-wrapper">
                 <div class="col-lg-8 col-md-8">
                     <div class="">
-                        <div class="detail-tile mb-4">
-                            <h3> {{$venue->name}} <span class="badge badge-pill badge-success text-uppercase">Open</span>
-                            </h3>
-                            <p>{{ $venue->address.", ".$venue->area->area_name.", ". $venue->city }}</p>
-                            <span class="badge badge-pill badge-info text-uppercase">{{ $venue->venue_category }}</span>
+                        <div class="row">
+                            <div class="col-sm-8 detail-tile mb-4">
+                                <h3> {{$venue->name}} <span class="badge badge-pill badge-success text-uppercase">Open</span>
+                                </h3>
+                                <p>{{ $venue->address.", ".$venue->area->area_name.", ". $venue->city }}</p>
+                                <span class="badge badge-pill badge-info text-uppercase">{{ $venue->venue_category }}</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <a href="#" title="Love it" class="love-btn btn-counter" data-count="0"><span class="love-icon">&#x2764;</span></a>
+                            </div>
                         </div>
                         <div class="nav-wrapper">
                             <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
@@ -183,4 +282,30 @@
         </div>
     </div>
 
+
+    <script>
+            $('.btn-counter').on('click', function (event, count) {
+                event.preventDefault();
+
+                var $this = $(this),
+                    count = $this.attr('data-count'),
+                    active = $this.hasClass('active'),
+                    multiple = $this.hasClass('multiple-count');
+
+                // First method, allows to add custom function
+                // Use when you want to do an ajax request
+                /* if (multiple) {
+                $this.attr('data-count', ++count);
+                // Your code here
+                } else {
+                $this.attr('data-count', active ? --count : ++count).toggleClass('active');
+                // Your code here
+                } */
+
+                // Second method, use when ... I dunno when but it looks cool and that's why it is here
+                $.fn.noop = $.noop;
+                $this.attr('data-count', !active || multiple ? ++count : --count)[multiple ? 'noop' : 'toggleClass']('active');
+
+            });
+    </script>
 @endsection
