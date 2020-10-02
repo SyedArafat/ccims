@@ -81,7 +81,7 @@
         .love-btn.active {
             text-shadow: 0 1px 0 #b12f27;
             background-color: #f69b8e;
-            border-color: #b12f27;
+            border-color: #f69b8e;
         }
         .love-btn:active { box-shadow: 0 0 5px 3px rgba(0,0,0,0.2) inset; }
         .love-btn span { color: #f69b8e; }
@@ -108,7 +108,7 @@
                                 <span class="badge badge-pill badge-info text-uppercase">{{ $venue->venue_category }}</span>
                             </div>
                             <div class="col-sm-4">
-                                <a href="{{ route('venue_favourite.store', [$venue->id, $venue->creator->id]) }}" title="Love it" class="love-btn btn-counter" data-count="0"><span class="love-icon">&#x2764;</span></a>
+                                <a href="{{ route('venue_favourite.change', [$venue->id, $venue->creator->id]) }}" title="Love it" class="love-btn btn-counter @if($is_fav) active @endif" data-count="{{ $venue->favourites->count() }}"><span class="love-icon">&#x2764;</span></a>
                             </div>
                         </div>
                         <div class="nav-wrapper">
@@ -246,27 +246,31 @@
                     <div class="sticky">
                         <!-- Book Now -->
                         <div class="boxed-widget booking-widget">
-                            <div>
-                                <div class="form-group focused">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                            {!! Form::open(["method" => "post", "action" => "BookingController@store"]) !!}
+                                <div>
+                                    <div class="form-group focused">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                            </div>
+                                            <input name="date" value="{{ old('date') }}" class="form-control" placeholder="Start date" type="date">
                                         </div>
-                                        <input class="form-control" placeholder="Start date" type="text" value="06/18/2018">
                                     </div>
+                                    <div class="form-group">
+                                        <select name="category" required class="form-control form-control-alternative custom-select" id="exampleFormControlSelect1">
+                                            <option value="" selected>Select Type</option>
+                                            @foreach($venue->prices as $price)
+                                                <option @if(old('category') == $price->id) selected @endif value="{{ $price->id }}">{{ ucfirst(preg_replace('/_/', ' ', $price->category_type)). " (". $price->price ."TK)" }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button style="margin: auto" type="submit" class="btn btn-1 btn-primary d-block">Book Now</button>
+                                    <div class="form-group">
                                 </div>
-                                <div class="form-group">
-                                    <select class="form-control form-control-alternative custom-select" id="exampleFormControlSelect1">
-                                        <option selected>Guest</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                        <option value="4">Four</option>
-                                    </select>
-                                </div>
-                            </div>
                             <!-- Book Now -->
-                            <a href="#" class="btn btn-1 btn-primary d-block">Book Now</a>
+
+                            {!! Form::close() !!}
                         </div>
                         <!-- Book Now / End -->
                         <div class="boxed-widget bg-secondary mt-4 text-center p-4">
@@ -300,20 +304,15 @@
                     active = $this.hasClass('active'),
                     multiple = $this.hasClass('multiple-count');
                 let url=$(this).attr('href')
-                if($this.hasClass('active')){
-                    alert("ac");
+                $.ajax({
+                    url : url,
+                    method : "post",
+                    data : {"_token": "{{ csrf_token() }}"},
+                    success : function (response) {
+                        console.log(response);
+                    }
 
-                }
-                else{
-                    $.ajax({
-                        url : url,
-                        method : "get",
-                        success : function (response) {
-                            console.log(response);
-                        }
-
-                    });
-                }
+                });
                 $.fn.noop = $.noop;
                 $this.attr('data-count', !active || multiple ? ++count : --count)[multiple ? 'noop' : 'toggleClass']('active');
 

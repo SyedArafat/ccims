@@ -15,7 +15,7 @@
                             <td>
                                 <div class="fm-input pricing-name">
                                     <label class="custom-select form-control-alternative">
-                                        {{  $price->category_type }}
+                                        {{  ucfirst(preg_replace('/_/', ' ', $price->category_type)) }}
                                     </label>
                                 </div>
                                 <div class="fm-input pricing-ingredients">

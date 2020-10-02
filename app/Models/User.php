@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Venue::class, 'created_by_id', 'id');
     }
+
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class, 'user_id', 'id');
+    }
 }

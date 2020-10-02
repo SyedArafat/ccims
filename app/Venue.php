@@ -20,4 +20,9 @@ class Venue extends Model
     {
         return $this->belongsTo(User::class, 'created_by_id','id');
     }
+
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class, 'venue_id','id');
+    }
 }

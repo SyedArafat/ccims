@@ -6,6 +6,7 @@ use App\CCIMS\Venue\VenueRepository;
 use App\Venue;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -93,6 +94,7 @@ class VenueController extends Controller
 
     public function show(Venue $venue)
     {
-        return view('website.venue.show', compact('venue'));
+        $is_fav = (bool)Auth::user()->favourites->where('venue_id', $venue->id)->count();
+        return view('website.venue.show', compact('venue', 'is_fav'));
     }
 }
