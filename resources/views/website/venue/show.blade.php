@@ -118,7 +118,7 @@
                                 <span class="badge badge-pill badge-info text-uppercase">{{ $venue->venue_category }}</span>
                             </div>
                             <div class="col-sm-4">
-                                <a href="{{ route('venue_favourite.change', [$venue->id, $venue->creator->id]) }}" title="Love it" class="love-btn btn-counter @if($is_fav) active @endif" data-count="{{ $venue->favourites->count() }}"><span class="love-icon">&#x2764;</span></a>
+                                <a href="{{ route('venue_favourite.change', [$venue->id, \Illuminate\Support\Facades\Auth::id()]) }}" title="Love it" class="love-btn btn-counter @if($is_fav) active @endif" data-count="{{ $venue->favourites->count() }}"><span class="love-icon">&#x2764;</span></a>
                             </div>
                         </div>
                         <div class="nav-wrapper">
@@ -212,54 +212,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
-                                        <div class="row mb-4 list-img-wrap">
-                                            <div class="col-md-12">
-                                                {!! Form::open(["method" => "post", "action" => ["ReviewController@store", $venue->id]]) !!}
-                                                <h5 class="text-primary">Give a review</h5>
-                                                <div>
-                                                    <label for="summary">Give a review</label><textarea required placeholder="Write an honest review about the place.." class="WYSIWYG form-control form-control-alternative" name="review" cols="40" rows="5" id="summary" spellcheck="true"> {{ old('review') }}</textarea>
-                                                </div>
-                                                <div>
-                                                    <button type="submit" style="padding: 11px; margin: 44px 0px;" class="btn btn-slack">Add Review</button>
-                                                </div>
-                                                {!! Form::close() !!}
-                                            </div>
-                                            <div style="margin: 1px solid"></div>
-                                            <br>
-                                            <div class="col-md-2 list-img"><img class="img-fluid rounded-circle shadow-lg" src="assets/images/thumb-1.jpg" alt="image">
-                                            </div>
-                                            <div class="col-md-10">
-                                                <h5 class="text-primary">Charlotte Ainsley</h5>
-                                                <p>15 Minutes Ago</p>
-                                                <p>Lorem Ipsum is simply dummy text of the pr make but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                                                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                                <button class="btn btn-sm btn-primary" type="button">Helpful?</button>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4 list-img-wrap">
-                                            <div class="col-md-2 list-img"><img class="img-fluid rounded-circle shadow-lg" src="assets/images/thumb-2.jpg" alt="image">
-                                            </div>
-                                            <div class="col-md-10">
-                                                <h5 class="text-primary">Sophia Ainsworth</h5>
-                                                <p>2 Days Ago</p>
-                                                <p>Lorem Ipsum is simply dummy text of the pr make but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                                                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                                <button class="btn btn-sm btn-primary" type="button">Helpful?</button>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4 list-img-wrap">
-                                            <div class="col-md-2 list-img"><img class="img-fluid rounded-circle shadow-lg" src="assets/images/thumb-1.jpg" alt="image">
-                                            </div>
-                                            <div class="col-md-10">
-                                                <h5 class="text-primary">Ava Acton</h5>
-                                                <p>3 days Ago</p>
-                                                <p>Lorem Ipsum is simply dummy text of the pr make but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                                                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                                <button class="btn btn-sm btn-primary" type="button">Helpful?</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @include('website.venue._review')
                                 </div>
                             </div>
                         </div>

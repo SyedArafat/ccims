@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function (){
         Route::post('user/{user}/update-profile-info', "ProfileController@updateProfileInfo");
         Route::post('venue/{venue}/favourite/{user}', 'FavouriteController@change')->name('venue_favourite.change');
         Route::post('venue/booking', 'BookingController@store')->name('venue.booking');
+        Route::get('/venue', 'VenueController@indexList')->name('venue.index_list');
+        Route::get('/venue/{venue}', 'VenueController@show')->name('venue.show');
     });
 
     /*
@@ -57,8 +59,5 @@ Route::middleware('auth')->group(function (){
         Route::post('/venue', 'VenueController@store')->name('venue.store');
         Route::get('/venue/{venue}/edit', 'VenueController@edit')->name('venue.edit');
         Route::patch('/venue/{venue}/update', 'VenueController@update')->name('venue.update');
-        Route::get('/venue', 'VenueController@indexList')->name('venue.index_list');
-        Route::get('/venue/{venue}', 'VenueController@show')->name('venue.show');
-        Route::post("/venue/{venue}/review", "ReviewController@store")->name('review.store');
     });
 });

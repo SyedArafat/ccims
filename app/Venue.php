@@ -25,4 +25,9 @@ class Venue extends Model
     {
         return $this->hasMany(Favourite::class, 'venue_id','id');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'venue_id', 'id');
+    }
 }

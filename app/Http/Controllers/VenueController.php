@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CCIMS\Venue\VenueRepository;
+use App\Review;
 use App\Venue;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -92,10 +93,16 @@ class VenueController extends Controller
         return view('website.venue.index_list', compact("areas",'venues', 'request'));
     }
 
+    /**
+     * @param Venue $venue
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
     public function show(Venue $venue)
     {
         $is_fav         = (bool)Auth::user()->favourites->where('venue_id', $venue->id)->count();
         $booking_status = Auth::user()->venueBooking()->where('venue_id', $venue->id)->orderBy('created_at', 'desc')->first();
-        return view('website.venue.show', compact('venue', 'is_fav', 'booking_status'));
+        $reviews        = Review::with('user.profile')->where('venue_id', $venue->id)->get();
+        $has_review = (bool)(Auth::user()->reviews->where('venue_id', $venue->id)->count());
+        return view('website.venue.show', compact('venue', 'is_fav', 'booking_status', 'reviews', 'has_review'));
     }
 }
