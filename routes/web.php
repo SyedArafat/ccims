@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function (){
     */
 
     Route::middleware("user.type:$customer")->group(function (){
+        Route::post("/venue/{venue}/review", "ReviewController@store")->name('review.store');
         Route::get('/kaka', 'HomeController@kaka');
     });
 
@@ -58,5 +59,6 @@ Route::middleware('auth')->group(function (){
         Route::patch('/venue/{venue}/update', 'VenueController@update')->name('venue.update');
         Route::get('/venue', 'VenueController@indexList')->name('venue.index_list');
         Route::get('/venue/{venue}', 'VenueController@show')->name('venue.show');
+        Route::post("/venue/{venue}/review", "ReviewController@store")->name('review.store');
     });
 });

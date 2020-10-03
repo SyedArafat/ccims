@@ -97,8 +97,18 @@
     </style>
     <div class="container">
         <div class="content">
+            @include('website._error_alerts')
+            @if ($errors->any())
+                <div id="alert_message" class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="row sticky-wrapper">
-                <div class="col-lg-9 col-md-9">
+                <div class="col-lg-8 col-md-8">
                     <div class="">
                         <div class="row">
                             <div class="col-sm-8 detail-tile mb-4">
@@ -185,9 +195,9 @@
                                     <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
                                         <p class="description">{{ $venue->address.", ".$venue->area->area_name.", ".$venue->city }}</p>
                                         <div>
-                                             <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px">
-                                  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-                                  </agm-map>
+                                            <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px">
+                                                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                            </agm-map>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
@@ -204,6 +214,19 @@
                                     </div>
                                     <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
                                         <div class="row mb-4 list-img-wrap">
+                                            <div class="col-md-12">
+                                                {!! Form::open(["method" => "post", "action" => ["ReviewController@store", $venue->id]]) !!}
+                                                <h5 class="text-primary">Give a review</h5>
+                                                <div>
+                                                    <label for="summary">Give a review</label><textarea required placeholder="Write an honest review about the place.." class="WYSIWYG form-control form-control-alternative" name="review" cols="40" rows="5" id="summary" spellcheck="true"> {{ old('review') }}</textarea>
+                                                </div>
+                                                <div>
+                                                    <button type="submit" style="padding: 11px; margin: 44px 0px;" class="btn btn-slack">Add Review</button>
+                                                </div>
+                                                {!! Form::close() !!}
+                                            </div>
+                                            <div style="margin: 1px solid"></div>
+                                            <br>
                                             <div class="col-md-2 list-img"><img class="img-fluid rounded-circle shadow-lg" src="assets/images/thumb-1.jpg" alt="image">
                                             </div>
                                             <div class="col-md-10">
@@ -242,25 +265,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="sticky">
                         <!-- Book Now -->
                         <div class="boxed-widget booking-widget">
                             {!! Form::open(["method" => "post", "action" => "BookingController@store"]) !!}
+                            {!! Form::hidden('venue_id', $venue->id) !!}
                                 <div>
-                                    <div class="form-group focused">
+                                    <div class="form-group focused @if($errors->has('date')) {{ 'has-error' }} @endif">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                             </div>
-                                            <input name="date" value="{{ old('date') }}" class="form-control" placeholder="Start date" type="date">
+                                            <input name="booking_date" value="{{ old('booking_date') }}" class="form-control" placeholder="Start booking date" title="select booking date" type="date">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <select name="category" required class="form-control form-control-alternative custom-select" id="exampleFormControlSelect1">
+                                        <select name="price_id" required class="form-control form-control-alternative custom-select" id="exampleFormControlSelect1">
                                             <option value="" selected>Select Type</option>
                                             @foreach($venue->prices as $price)
-                                                <option @if(old('category') == $price->id) selected @endif value="{{ $price->id }}">{{ ucfirst(preg_replace('/_/', ' ', $price->category_type)). " (". $price->price ."TK)" }}</option>
+                                                <option @if(old('price') == $price->id) selected @endif value="{{ $price->id }}">{{ ucfirst(preg_replace('/_/', ' ', $price->category_type)). " (". $price->price ."TK)" }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -273,8 +297,24 @@
                             {!! Form::close() !!}
                         </div>
                         <!-- Book Now / End -->
+                        @if(isset($booking_status))
                         <div class="boxed-widget bg-secondary mt-4 text-center p-4">
-                            <h4 class="mb-4">Key People</h4>
+                            <h4 class="mb-4">My Booking (Latest)</h4>
+                            <div class="mb-3">
+                                <div class="mb-2">
+                                    <img class="img-fluid rounded-circle shadow-lg" width="80" height="80" src="@if(\Illuminate\Support\Facades\Auth::user()->profile_photo) {{ asset(\Illuminate\Support\Facades\Auth::user()->profile_photo) }} @else {{ asset("assets/images/default-avatar.png") }} @endif" alt="image">
+                                </div>
+                            </div>
+                            <ul class="listing-details-sidebar">
+                                <li><i class="fa fa-calendar"></i>Date : {{ $booking_status->date }}</li>
+                                <li><i class="fa fa-angle-double-up"></i> Category : {{ ucfirst(preg_replace('/_/', ' ', $booking_status->prices->category_type)) }}</li>
+                                <li><i class="fa fa-star"></i> Status : {{ ucfirst($booking_status->status) }}</li>
+                                <li><i class="fa fa-user"></i> Booked By : {{ \Illuminate\Support\Facades\Auth::user()->name }}</li>
+                            </ul>
+                        </div>
+                        @endif
+                        <div class="boxed-widget bg-secondary mt-4 text-center p-4">
+                            <h4 class="mb-4">Contact Person</h4>
                             <div class="mb-3">
                                 <div class="mb-2">
                                     <img class="img-fluid rounded-circle shadow-lg" width="80" height="80" src="@if($venue->creator->profile->profile_photo) {{ asset($user->profile->profile_photo) }} @else {{ asset("assets/images/default-avatar.png") }} @endif" alt="image">
@@ -317,5 +357,7 @@
                 $this.attr('data-count', !active || multiple ? ++count : --count)[multiple ? 'noop' : 'toggleClass']('active');
 
             });
+
+            setTimeout(function() { $('.alert-box').hide('slow'); }, 5000);
     </script>
 @endsection

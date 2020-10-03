@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Favourite::class, 'user_id', 'id');
     }
+
+    public function venueBooking()
+    {
+        return $this->hasMany(VenueBooking::class, 'user_id', 'id');
+    }
 }

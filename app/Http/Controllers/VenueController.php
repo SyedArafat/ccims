@@ -94,7 +94,8 @@ class VenueController extends Controller
 
     public function show(Venue $venue)
     {
-        $is_fav = (bool)Auth::user()->favourites->where('venue_id', $venue->id)->count();
-        return view('website.venue.show', compact('venue', 'is_fav'));
+        $is_fav         = (bool)Auth::user()->favourites->where('venue_id', $venue->id)->count();
+        $booking_status = Auth::user()->venueBooking()->where('venue_id', $venue->id)->orderBy('created_at', 'desc')->first();
+        return view('website.venue.show', compact('venue', 'is_fav', 'booking_status'));
     }
 }
