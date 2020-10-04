@@ -12,6 +12,8 @@ return [
         "day",
         "night",
         "full_day"
-    ]
+    ],
+
+    "full_day_id" => 3
 
 ];
