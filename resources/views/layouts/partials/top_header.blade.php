@@ -2,7 +2,7 @@
     <nav id="navbar-main" class="navbar navbar-main fixed-top navbar-expand-lg navbar-transparent navbar-light headroom">
         <div class="container">
             <div class="logo">
-                <a><img src="{{ asset('assets/images/logo-white.png') }}" class="img-fluid" alt=""></a>
+                <a href="{{ route('home') }}"><h3 style="color: wheat">CCIMS</h3></a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

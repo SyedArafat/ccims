@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\CCIMS\Category\CategoryRepository;
 use App\CCIMS\Venue\VenueRepository;
-use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,10 +12,12 @@ class HomeController extends Controller
     {
     }
 
-    public function index(Request $request)
+    public function index(Request $request, VenueRepository $venueRepository, CategoryRepository $categoryRepository)
     {
-        $areas = app(VenueRepository::class)->all_areas();
-        return view('website.home', compact('request', 'areas'));
+        $venue_count    = $categoryRepository->categoryVenueCount();
+        $areas          = $venueRepository->all_areas();
+        $popular_places = $venueRepository->getPopularVenues(6);
+        return view('website.home', compact('request', 'areas', 'popular_places', 'venue_count'));
     }
 
 }

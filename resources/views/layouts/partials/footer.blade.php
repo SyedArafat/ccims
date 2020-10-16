@@ -2,8 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 col-sm-6">
-                <img class="footer-logo img-fluid" src="{{ asset('assets/images/logo-white.png') }}" alt="list-logo">
-                <br><br>
+                <a href="{{ route('home') }}"><h3 style="color: wheat">CCIMS</h3></a>
                 <p class="text-white">Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
                 <div class="text-widget text-white">
                     <span class="text-white">12345 Little Lonsdale St, Melbourne</span> <br> Phone: <span class="text-white">(123) 123-456 </span><br> E-Mail:
@@ -47,7 +46,7 @@
         <!-- Copyright -->
         <div class="row">
             <div class="col-md-12">
-                <div class="copyrights text-white">© 2019 D-List. All Rights Reserved.</div>
+                <div class="copyrights text-white">© Community Center Information Management System. All Rights Reserved.</div>
             </div>
         </div>
     </div>

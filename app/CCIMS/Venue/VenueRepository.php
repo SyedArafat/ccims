@@ -8,6 +8,7 @@ use App\Venue;
 use App\VenuePrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class VenueRepository
 {
@@ -153,6 +154,17 @@ class VenueRepository
                 "updated_by_id" => Auth::id()
             ]);
         }
+    }
+
+    /**
+     * @param int $limit
+     * @return mixed
+     */
+    public function getPopularVenues($limit = 3)
+    {
+        return Venue::join('favourites', 'venues.id', 'venue_id')
+            ->groupBy("venues.id")->orderBy(DB::raw("count(venues.id)"), "desc")
+            ->limit($limit)->select(["venues.*"])->get();
     }
 
 }

@@ -2,10 +2,17 @@
 
 return [
     "categories" => [
+        "Community Center",
+        "Event Hall",
         "Eat & Drink",
-        "Hotel",
-        "Restaurant",
-        "Event"
+        "Hotel"
+    ],
+
+    "category_icon" => [
+        "assets/images/community-center.jpg",
+        "assets/images/event-hall.jpg",
+        "assets/images/eat-drink.jpg",
+        "assets/images/hotel.webp"
     ],
 
     "price_categories" => [
