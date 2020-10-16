@@ -20,30 +20,35 @@
                 <div class="main-search-inner">
                     <h2 class="text-white display-2">Find and book suitable venue for your event</h2>
                     <h4 class="text-white">Gaye Halud, Wedding Party, Corporate Meeting, Fair, Birthday Party & more ...</h4>
+                    {!! Form::open(["method" => "get", "action" => "VenueController@indexList"]) !!}
                     <div class="main-search-input">
                         <div class="main-search-input-item">
                             <input type="text" placeholder="What are you looking for?" value="" />
                         </div>
                         <div class="main-search-input-item location">
                             <div id="autocomplete-container">
-                                <input id="autocomplete-input" type="text" placeholder="Location">
+                                <select name="area_id" class="chosen-select custom-select" id="inlineFormCustomSelectPref">
+                                    <option value="" selected>All...</option>
+                                    @foreach($areas as $area)
+                                        <option @if($request->area_id == $area->id) selected @endif value="{{ $area->id }}">{{ $area->area_name }}</option>
+                                    @endforeach
+                                </select>
+{{--                                <input id="autocomplete-input" type="text" placeholder="Location">--}}
                             </div>
                             <a href="#"><i class="fa fa-map-marker"></i></a>
                         </div>
                         <div class="main-search-input-item">
-                            <select data-placeholder="All Categories" class="chosen-select custom-select">
-                                <option>All Categories</option>
-                                <option>Shops</option>
-                                <option>Hotels</option>
-                                <option>Restaurants</option>
-                                <option>Fitness</option>
-                                <option>Events</option>
+                            <select name="venue_category" class="chosen-select custom-select" id="inlineFormCustomSelectPref">
+                                <option value="" selected>All...</option>
+                                @foreach(config('venue.categories') as $category)
+                                    <option @if($request->venue_category == $category) selected @endif value="{{ $category }}">{{ $category }}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <a href="#" class="btn main-search-btn btn-radius btn-lg btn-white">
-                            <span class="btn-inner--text">Search</span>
-                        </a>
+                        <button type="submit" class="btn main-search-btn btn-radius btn-lg btn-primary text-white"><span class="btn-inner--text">Search</span></button>
+
                     </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
             <!-- SVG separator -->

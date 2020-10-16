@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CCIMS\Venue\VenueRepository;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -11,9 +12,10 @@ class HomeController extends Controller
     {
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('website.home');
+        $areas = app(VenueRepository::class)->all_areas();
+        return view('website.home', compact('request', 'areas'));
     }
 
 }

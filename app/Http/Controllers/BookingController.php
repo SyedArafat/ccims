@@ -44,7 +44,7 @@ class BookingController extends Controller
     private function isAvailable($request)
     {
         $bookings = VenueBooking::where('venue_id', $request->venue_id)->where('date', Carbon::parse($request->booking_date)->toDateString())->get();
-        if($bookings) {
+        if(count($bookings) > 0) {
             if ($request->price_id == config('venue.full_day_id')) return false;
             else {
                 foreach ($bookings as $booking) {
