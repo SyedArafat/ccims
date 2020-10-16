@@ -118,7 +118,11 @@
                                 <span class="badge badge-pill badge-info text-uppercase">{{ $venue->venue_category }}</span>
                             </div>
                             <div class="col-sm-4">
-                                <a href="{{ route('venue_favourite.change', [$venue->id, \Illuminate\Support\Facades\Auth::id()]) }}" title="Love it" class="love-btn btn-counter @if($is_fav) active @endif" data-count="{{ $venue->favourites->count() }}"><span class="love-icon">&#x2764;</span></a>
+                                @auth()
+                                    <a href="{{ route('venue_favourite.change', [$venue->id, \Illuminate\Support\Facades\Auth::id()]) }}" title="Love it" class="love-btn btn-counter @if($is_fav) active @endif" data-count="{{ $venue->favourites->count()}}"><span class="love-icon">&#x2764;</span></a>
+                                @else
+                                    <a title="Love it" class="love-btn btn-counter" data-count="{{ $venue->favourites->count()}}"><span class="love-icon">&#x2764;</span></a>
+                                @endauth
                             </div>
                         </div>
                         <div class="nav-wrapper">

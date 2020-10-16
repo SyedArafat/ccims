@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', "HomeController@index")->name('home');
+Route::get('/venue', 'VenueController@indexList')->name('venue.index_list');
+Route::get('/venue/{venue}', 'VenueController@show')->name('venue.show');
 
 Auth::routes();
 
@@ -33,8 +35,6 @@ Route::middleware('auth')->group(function (){
         Route::post('user/{user}/update-profile-info', "ProfileController@updateProfileInfo");
         Route::post('venue/{venue}/favourite/{user}', 'FavouriteController@change')->name('venue_favourite.change');
         Route::post('venue/booking', 'BookingController@store')->name('venue.booking');
-        Route::get('/venue', 'VenueController@indexList')->name('venue.index_list');
-        Route::get('/venue/{venue}', 'VenueController@show')->name('venue.show');
     });
 
     /*

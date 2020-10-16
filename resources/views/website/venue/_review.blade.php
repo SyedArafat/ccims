@@ -1,20 +1,22 @@
 <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
-    @if(!$has_review && getUserType() == getTypeCustomer())
-        <div class="row mb-4 list-img-wrap">
-            <div class="col-md-12">
-                {!! Form::open(["method" => "post", "action" => ["ReviewController@store", $venue->id]]) !!}
-                <h5 class="text-primary">Give a review</h5>
-                <div>
-                    <textarea style="color: black" required placeholder="Write an honest review about the place.." class="WYSIWYG form-control form-control-alternative" name="review" cols="40" rows="5" id="summary" spellcheck="true">{{ old('review') }}</textarea>
+    @auth()
+        @if(!$has_review && getUserType() == getTypeCustomer())
+            <div class="row mb-4 list-img-wrap">
+                <div class="col-md-12">
+                    {!! Form::open(["method" => "post", "action" => ["ReviewController@store", $venue->id]]) !!}
+                    <h5 class="text-primary">Give a review</h5>
+                    <div>
+                        <textarea style="color: black" required placeholder="Write an honest review about the place.." class="WYSIWYG form-control form-control-alternative" name="review" cols="40" rows="5" id="summary" spellcheck="true">{{ old('review') }}</textarea>
+                    </div>
+                    <div>
+                        <button type="submit" style="padding: 11px; margin: 44px 0px;" class="btn btn-slack">Add Review</button>
+                    </div>
+                    {!! Form::close() !!}
                 </div>
-                <div>
-                    <button type="submit" style="padding: 11px; margin: 44px 0px;" class="btn btn-slack">Add Review</button>
-                </div>
-                {!! Form::close() !!}
+                <br>
             </div>
-            <br>
-        </div>
-    @endif
+        @endif
+    @endauth
     <br>
     @forelse($reviews as $review)
         <div class="row mb-4 list-img-wrap">
