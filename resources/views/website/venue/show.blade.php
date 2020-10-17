@@ -95,7 +95,7 @@
             font-size: 28px;
         }
     </style>
-    <div class="container">
+    <div style="margin-top: 25px" class="container">
         <div class="content">
             @include('website._error_alerts')
             @if ($errors->any())

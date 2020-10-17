@@ -80,7 +80,7 @@
                                     <div class="icon-title">
                                     </div>
                                     <h3>
-                                        <a href="JavaScript:Void(0);" class="text-white">{{ $category }}
+                                        <a href="{{ route('venue.index_list')."?venue_category=".$category }}" class="text-white">{{ $category }}
                                         </a>
                                     </h3>
                                     <span> <small>{{$venue_count[$key]}} listings</small> </span>
@@ -149,7 +149,7 @@
                                             <div class="mostviewed-bg" style="background-image: url({{asset($place->venue_image)}})">
                                                 <div class="listing-item-content">
                                                     <div class="list-logo">
-                                                        <a> <img src="{{asset("assets/images/logo-1.png")}}" width="80" height="80" alt="logo"></a>
+                                                        <a> <img src="{{asset("assets/images/event-hall-logo.png")}}" width="80" height="80" alt="logo"></a>
                                                     </div>
                                                     <span class="badge badge-pill badge-primary text-uppercase category-banner">{{ $place->venue_category }}</span>
                                                     <h3><a href="JavaScript:Void(0);">{{ $place->name }}</a></h3>
