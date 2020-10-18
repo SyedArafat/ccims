@@ -36,11 +36,7 @@
                                         <a href="{{ route('venue.index_list') }}">All Venues</a>
                                     </li>
                                     <li>
-                                        <a href="#">Detail</a>
-                                        <ul>
-                                            <li><a href="listings-detail-one.html">Version 1</a></li>
-                                            <li><a href="listings-detail-two.html">Version 2</a></li>
-                                        </ul>
+                                        <a href="{{ route('venue.favorite') }}">Favorites</a>
                                     </li>
                                 </ul>
                             </li>

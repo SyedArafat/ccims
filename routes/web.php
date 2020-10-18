@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function (){
         Route::post('user/{user}/update-profile-info', "ProfileController@updateProfileInfo");
         Route::post('venue/{venue}/favourite/{user}', 'FavouriteController@change')->name('venue_favourite.change');
         Route::post('venue/booking', 'BookingController@store')->name('venue.booking');
+        Route::get('favorite/venues', "FavoriteVenueController@index")->name('venue.favorite');
     });
 
     /*
