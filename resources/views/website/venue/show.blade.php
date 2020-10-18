@@ -289,6 +289,22 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="editReview" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Update Review</h6>
+                        <button style="text-align: right" type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body edit-modal-body">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -313,6 +329,21 @@
                 $.fn.noop = $.noop;
                 $this.attr('data-count', !active || multiple ? ++count : --count)[multiple ? 'noop' : 'toggleClass']('active');
 
+            });
+
+            $('.tab-content').on("click", ".edit-review-button", function (event) {
+                event.preventDefault();
+                let url=$(this).attr('href');
+                let method="get";
+                $.ajax({
+                    url:url,
+                    method:method,
+                    success:function (response) {
+                        $('.edit-modal-body').html(response);
+                    }
+                });
+
+                $("#editReview").modal();
             });
 
             setTimeout(function() { $('.alert-box').hide('slow'); }, 5000);

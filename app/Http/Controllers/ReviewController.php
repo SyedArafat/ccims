@@ -27,4 +27,23 @@ class ReviewController extends Controller
         Session::flash('success', "Review Added");
         return redirect()->back();
     }
+
+    public function edit(Review $review)
+    {
+        return view('website.venue.review_edit_content', compact('review'));
+    }
+
+    /**
+     * @param Review $review
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function update(Review $review, Request $request)
+    {
+        $this->validate($request, [ "review" => "required" ]);
+        $review->update(["review" => $request->review]);
+        Session::flash("success", "Review updated");
+        return redirect()->back();
+    }
 }

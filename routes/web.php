@@ -46,7 +46,8 @@ Route::middleware('auth')->group(function (){
 
     Route::middleware("user.type:$customer")->group(function (){
         Route::post("/venue/{venue}/review", "ReviewController@store")->name('review.store');
-        Route::get('/kaka', 'HomeController@kaka');
+        Route::get('/review/{review}/edit', 'ReviewController@edit')->name('review.edit');
+        Route::post('/review/{review}', 'ReviewController@update');
     });
 
     /*

@@ -11,8 +11,7 @@ class FavoriteVenueController extends Controller
 {
     public function index(Request $request, VenueRepository $venueRepository)
     {
-        $areas  = $venueRepository->all_areas();
         $venues = Venue::with('area')->join('favourites', 'venues.id', '=', 'venue_id')->where('favourites.user_id', Auth::id())->paginate(10);
-        return view('website.venue.favorite.index', compact("areas",'venues'));
+        return view('website.venue.favorite.index', compact('venues'));
     }
 }
