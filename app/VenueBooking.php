@@ -12,4 +12,14 @@ class VenueBooking extends Model
     {
         return $this->belongsTo(VenuePrice::class, 'price_id','id');
     }
+
+    public function customer()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function venue()
+    {
+        return $this->belongsTo(Venue::class, 'venue_id', 'id');
+    }
 }

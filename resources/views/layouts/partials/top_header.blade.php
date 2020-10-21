@@ -41,17 +41,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">User Panel</a>
-                                <ul>
-                                    <li><a href="dashboard.html">Dashboard</a></li>
-                                    <li><a href="dashboard-messages.html">Messages</a></li>
-                                    <li><a href="dashboard-bookings.html">Bookings</a></li>
-                                    <li><a href="dashboard-reviews.html">Reviews</a></li>
-                                    <li><a href="dashboard-bookmarks.html">Bookmarks</a></li>
-                                    <li><a href="dashboard-listing.html">My Listings</a></li>
-                                    <li><a href="dashboard-add-listing.html">Add List</a></li>
-                                    <li><a href="dashboard-profile.html">Profile</a></li>
-                                </ul>
+                                <a href="{{ route('venue.pending_list') }}">Pending Request</a>
                             </li>
                             @if(!auth()->check())
                                 <li>

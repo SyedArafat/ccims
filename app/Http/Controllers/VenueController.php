@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CCIMS\Venue\VenueRepository;
 use App\Review;
 use App\Venue;
+use App\VenueBooking;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -106,5 +107,11 @@ class VenueController extends Controller
         }
         $reviews = Review::with('user.profile')->where('venue_id', $venue->id)->get();
         return view('website.venue.show', compact('venue', 'is_fav', 'booking_status', 'reviews', 'has_review'));
+    }
+
+    public function pending_list()
+    {
+        $list = VenueBooking::with('customer', 'customer.profile', 'prices')->join('venues', 'venue_bookings.venue_id', 'venues.id')->where('venues.created_by_id', Auth::id())->get();
+        return view('website.venue.pending.index', compact('list'));
     }
 }

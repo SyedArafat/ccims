@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function (){
         Route::post('venue/{venue}/favourite/{user}', 'FavouriteController@change')->name('venue_favourite.change');
         Route::post('venue/booking', 'BookingController@store')->name('venue.booking');
         Route::get('favorite/venues', "FavoriteVenueController@index")->name('venue.favorite');
+        Route::get('venue-pending-list', "VenueController@pending_list")->name('venue.pending_list');
     });
 
     /*
