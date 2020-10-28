@@ -1,8 +1,11 @@
 @extends('layouts.website')
 @section('title', "Venue Detail")
 @section('body_content')
-
     <div style="margin-top: 25px" class="container">
+        <div style="margin-top: 110px">
+            @include('website._error_alerts')
+        </div>
+
         @foreach($list as $venue)
             <div class="row responsive-row">
                 <div class="col-lg-12 col-md-12">
@@ -49,8 +52,8 @@
                                         </div>
                                         <h4 class="m-0 text-small">{{ $venue->price }}</h4>
                                     </div>
-                                    <button class="btn btn-1 btn-primary" type="button">Approve</button>
-                                    <button class="btn btn-1 btn-danger" type="button">Reject</button>
+                                    <a onclick="return confirm('Are you sure?');" href="{{route('venue.approve_booking', $venue->id)}}"><button class="btn btn-1 btn-primary" type="button">Approve</button></a>
+                                    <a onclick="return confirm('Are you sure?');" href="{{route('venue.reject_booking', $venue->id)}}"> <button class="btn btn-1 btn-danger" type="button">Reject</button></a>
                                 </div>
                             </div>
                         </div>

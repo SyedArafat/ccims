@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function (){
         Route::post('venue/{venue}/favourite/{user}', 'FavouriteController@change')->name('venue_favourite.change');
         Route::post('venue/booking', 'BookingController@store')->name('venue.booking');
         Route::get('favorite/venues', "FavoriteVenueController@index")->name('venue.favorite');
-        Route::get('venue-pending-list', "VenueController@pending_list")->name('venue.pending_list');
+        Route::get('venue-pending-list', "VenueBookingController@pending_list")->name('venue.pending_list');
     });
 
     /*
@@ -62,5 +62,8 @@ Route::middleware('auth')->group(function (){
         Route::post('/venue', 'VenueController@store')->name('venue.store');
         Route::get('/venue/{venue}/edit', 'VenueController@edit')->name('venue.edit');
         Route::patch('/venue/{venue}/update', 'VenueController@update')->name('venue.update');
+        Route::get('/approve-booking/{book}', "VenueBookingController@approve")->name('venue.approve_booking');
+        Route::get('/reject-booking/{book}', "VenueBookingController@reject")->name('venue.reject_booking');
+
     });
 });
