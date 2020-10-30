@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function (){
     */
 
     Route::middleware("user.type:$hall_owner")->group(function (){
-        Route::get('/venue/create', 'VenueController@create')->name('venue.create');
+        Route::get('/venue-create', 'VenueController@create')->name('venue.create');
         Route::post('/venue', 'VenueController@store')->name('venue.store');
         Route::get('/venue/{venue}/edit', 'VenueController@edit')->name('venue.edit');
         Route::patch('/venue/{venue}/update', 'VenueController@update')->name('venue.update');

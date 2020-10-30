@@ -6,7 +6,7 @@
             @include('website._error_alerts')
         </div>
 
-        @foreach($list as $venue)
+        @forelse($list as $venue)
             <div class="row responsive-row">
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
@@ -60,7 +60,17 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+                <div class="row responsive-row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div style="text-align: center; margin-bottom: 100px" class="card-body">
+                                <h4>No pending request</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        @endforelse
     </div>
 
 @endsection

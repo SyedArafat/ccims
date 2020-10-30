@@ -26,7 +26,7 @@
             <div class="col-lg-4 side-banner" style="background-image:url({{asset('assets/images/bg-login.jpg')}});background-position: center center; background-size: cover;">
                 <div class="content px-5 text-center d-flex justify-content-center h-100">
                     <div class="align-self-center">
-                        <img src="{{asset("assets/images/logo-white.png")}}" width="170" class="mb-4 img-fluid" alt="image">
+{{--                        <img src="{{asset("assets/images/logo-white.png")}}" width="170" class="mb-4 img-fluid" alt="image">--}}
                         <h4 class="text-white">Discover great places in Dhaka</h4>
                         <p class="text-white">Find awesome places, restaurants and hotels for your precious events</p>
                         <a href=" {{ route('home') }} " class="btn btn-success">Home</a>
