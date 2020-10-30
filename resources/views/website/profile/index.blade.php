@@ -2,7 +2,7 @@
 @section('title', $user->name)
 @section('body_content')
     <style>
-        .modal {
+        .modals {
             position: absolute;
             top: 80px;
             right: 100px;
@@ -63,65 +63,50 @@
                                 </div>
 
                         </div>
-                        <div class="px-4">
-                            <h3>{{getUserName()}}'s Stored Venues</h3>
-                        </div>
-                        @include('website.profile.venue_list')
-                        <div class="pb-5">
+                        @if(getUserType() === getTypeHallOwner())
                             <div class="px-4">
-                                <h3>Reviews</h3>
+                                <h3>{{getUserName()}}'s Stored Venues</h3>
                             </div>
-                            <div class="row p-4 list-img-wrap">
-                                <div class="col-md-2 list-img">
-                                    <img src="{{ asset('assets/images/logo-1.png') }}" class="img-fluid rounded-circle shadow-lg" alt="image">
+                            @include('website.profile.venue_list')
+                        @endif
+                        @if(getUserType() === getTypeCustomer())
+                            <div class="pb-5 reviews-holder">
+                                <div class="px-4">
+                                    <h3>Reviews</h3>
                                 </div>
-                                <div class="col-md-10">
-                                    <h5 class="text-primary">Cafe Bar</h5>
-                                    <p>15 Minutes Ago</p>
-                                    <p>Lorem Ipsum is simply dummy text of the pr make but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                        with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                    <button class="btn btn-sm btn-primary" type="button">Edit</button>
-                                    <button class="btn btn-sm btn-danger" type="button">Remove</button>
-                                </div>
+                                @include('website.profile.review_list')
+
                             </div>
-                            <div class="row p-4 list-img-wrap">
-                                <div class="col-md-2 list-img">
-                                    <img src="{{ asset('assets/images/logo-2.png') }}" class="img-fluid rounded-circle shadow-lg" alt="image">
-                                </div>
-                                <div class="col-md-10">
-                                    <h5 class="text-primary">Kyoto Sushi Bar</h5>
-                                    <p>1 Week Ago</p>
-                                    <p>Quisque vel semper mauris, quis auctor magna. Morbi posuere risus non efficitur fringilla. Integer lacus arcu, imperdiet eget orci at, tempor euismod massa. Donec sit amet luctus leo, sit amet blandit sapien. Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Morbi maximus dui quis ex scelerisque iaculis</p>
-                                    <button class="btn btn-sm btn-primary" type="button">Edit</button>
-                                    <button class="btn btn-sm btn-danger" type="button">Remove</button>
-                                </div>
-                            </div>
-                            <div class="row p-4 list-img-wrap">
-                                <div class="col-md-2 list-img">
-                                    <img src="{{ asset('assets/images/logo-3.png') }}" class="img-fluid rounded-circle shadow-lg" alt="image">
-                                </div>
-                                <div class="col-md-10">
-                                    <h5 class="text-primary">Burger Sack</h5>
-                                    <p>21 March 18</p>
-                                    <p>Maecenas mollis bibendum ipsum id vestibulum. Donec viverra sem eu diam euismod, quis congue nisi commodo. Maecenas volutpat sem justo, id cursus tellus placerat sit amet. Nunc porta orci ultrices purus congue placerat. Proin laoreet et odio
-                                        dictum laoreet. Maecenas consectetur sem quis velit euismod hendrerit.</p>
-                                    <button class="btn btn-sm btn-primary" type="button">Edit</button>
-                                    <button class="btn btn-sm btn-danger" type="button">Remove</button>
-                                </div>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
+        @include('website.venue.modal._update_review')
     </div>
 
     @include('website.profile.modal.update_photo')
 
     @include('website.profile.modal.update_info')
 
-    <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $('.reviews-holder').on("click", ".edit-review-button", function (event) {
+            event.preventDefault();
+            let url=$(this).attr('href');
+            let method="get";
+            $.ajax({
+                url:url,
+                method:method,
+                success:function (response) {
+                    $('.edit-modal-body').html(response);
+                }
+            });
+
+            $("#editReview").modal();
+        });
+
         setTimeout(function() { $('.alert-box').hide('slow'); }, 5000);
     </script>
 

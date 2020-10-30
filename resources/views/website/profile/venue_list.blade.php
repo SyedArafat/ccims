@@ -1,5 +1,5 @@
 <div class="row p-4">
-    @foreach($user->venues as $venue)
+    @forelse($user->venues as $venue)
         <?php
         /** @var \App\Venue $venue */
         $facilities = (json_decode($venue->facilities, true));
@@ -29,5 +29,7 @@
                 </span>
             </div>
         </div>
-    @endforeach
+    @empty
+        <div><h4>You have not added any venues !</h4></div>
+    @endforelse
 </div>
