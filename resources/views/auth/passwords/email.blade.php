@@ -1,47 +1,87 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<head>
+    <!-- Basic Page Needs
+      ================================================== -->
+    <meta charset="utf-8">
+    <title>CCIMS | Password Reset</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900" rel="stylesheet">
+    <!-- CSS
+      ================================================== -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    @include('layouts.style.css')
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+</head>
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+<body>
+<div class="content p-0">
+    <div class="login-wrapper">
+        <div class="row m-0">
+            <div class="col-lg-4 side-banner" style="background-image:url({{asset('assets/images/bg-login.jpg')}});background-position: center center; background-size: cover;">
+                <div class="content px-5 text-center d-flex justify-content-center h-100">
+                    <div class="align-self-center">
+                        {{--                        <img src="{{asset("assets/images/logo-white.png")}}" width="170" class="mb-4 img-fluid" alt="image">--}}
+                        <h4 class="text-white">Discover great places in Dhaka</h4>
+                        <p class="text-white">Find awesome places, restaurants and hotels for your precious events</p>
+                        <a href="{{ route('home') }}" class="btn btn-success">HOME</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 site-content">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-6 mx-auto">
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+                            <div class="text-center mb-4">
+                                <h2>Reset Password</h2>
+                                <p>Fill up the following details</p>
+                            </div>
+                            <div class="card bg-secondary shadow border-0">
+                                <div class="card-body px-lg-5 py-lg-5">
+                                    <div class="text-center mb-4">
+                                        <h6>Give email address</h6>
+                                    </div>
+                                    <form method="POST" action="{{ route('password.email') }}">
+                                        @csrf
+                                        <div class="form-group mb-3">
+                                            <div class="input-group input-group-alternative">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                                </div>
+                                                <input id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}"  type="email" required autocomplete="email" autofocus>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                                @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary mt-4">{{ __('Send Password Reset Link') }}</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+<!-- Scripts
+  ================================================== -->
+@include('layouts.script.js')
+</body>
+
+</html>
+
