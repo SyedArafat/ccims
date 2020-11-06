@@ -8,8 +8,7 @@ return [
     'resource_storage' => 'resources',
 
     'cities' => [
-        0 => "Dhaka",
-        1 => "Chattogram"
+        0 => "Dhaka"
     ]
 
 ];
