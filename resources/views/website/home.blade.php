@@ -28,7 +28,7 @@
                         <div class="main-search-input-item location">
                             <div id="autocomplete-container">
                                 <select style="color: white; background: #5571cd" name="area_id" class="chosen-select custom-select" id="inlineFormCustomSelectPref">
-                                    <option value="" selected>All...</option>
+                                    <option value="" selected>Area...</option>
                                     @foreach($areas as $area)
                                         <option @if($request->area_id == $area->id) selected @endif value="{{ $area->id }}">{{ $area->area_name }}</option>
                                     @endforeach
@@ -39,7 +39,7 @@
                         </div>
                         <div class="main-search-input-item">
                             <select style="color: white; background: #5571cd" name="venue_category" class="chosen-select custom-select" id="inlineFormCustomSelectPref">
-                                <option value="" selected>All...</option>
+                                <option value="" selected>Type...</option>
                                 @foreach(config('venue.categories') as $category)
                                     <option @if($request->venue_category == $category) selected @endif value="{{ $category }}">{{ $category }}</option>
                                 @endforeach
